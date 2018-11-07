@@ -81,12 +81,15 @@ async function drawMain() {
     // 2. 요소 선택
     const thumbnailEl = frag.querySelector('.thumbnail')
     const nameEl = frag.querySelector('.name')
+    const itemEl = frag.querySelector('.item')
     // 3. 필요한 데이터 불러오기
     // 4. 내용 채우기
     thumbnailEl.setAttribute('src', productsItems.mainImgUrl);
     nameEl.textContent = productsItems.title;
     // 5. 이벤트 리스너 등록하기
-
+    itemEl.addEventListener("click", async e => {
+      drawDetail(productsItems.id);
+    });
     // 6. 템플릿을 문서에 삽입
     productListEl.appendChild(frag)
 
@@ -135,6 +138,8 @@ async function drawLoginForm() {
 }
 
 drawDetail(2);
+// drawLoginForm();
+// drawMain();
 
 pageTitleEl.textContent = pageTitle; // 페이지별 타이틀
 
