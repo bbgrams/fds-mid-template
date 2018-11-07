@@ -42,7 +42,7 @@ async function drawMain() {
   // 2. 요소 선택
   const productListEl = frag.querySelector('.products-list')
   // 3. 필요한 데이터 불러오기
-  const { data: productsList } = await api.get('/products?_embed=options')
+  const { data: productsList } = await api.get('/products')
   // 4. 내용 채우기
   // 상품 목록 나열
   for (const productsItems of productsList){

@@ -4,7 +4,7 @@ $main-color: #ffe600;
 $sub-color:#0f357d;
 $text-color: #202020;
 $border-color: #acacac;
-$border-shadow-style : 1px 0 0 0 $border-color,
+$box-shadow-style : 1px 0 0 0 $border-color,
                       0 1px 0 0 $border-color,
                       1px 1px 0 0 $border-color,
                       1px 0 0 0 $border-color inset,
@@ -131,13 +131,33 @@ body {
   font-size:1.6rem;
   /* border:1px solid $text-color; */
   /* border 겹침 현상때문에 shadow로 조정 */
-  box-shadow: $border-shadow-style
+  box-shadow: $box-shadow-style
 }
 .menu-item a{
   width:100%;
   padding:10px 0;
   display:inline-block;
 }
+
+.root{
+  width:1200px;
+  margin: 0 auto;
+}
+/* 상품 리스트 */
+.products-list{
+  margin-top:20px;
+}
+.item{
+  float:left;
+  width:25%;
+  box-shadow: $box-shadow-style;
+  padding:20px;
+}
+.item .name{
+  text-align: center;
+  font-size:1.5rem;
+}
+
 
 .login{
   background-color: coral;
