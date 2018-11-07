@@ -4,6 +4,11 @@ $main-color: #ffe600;
 $sub-color:#0f357d;
 $text-color: #202020;
 $border-color: #acacac;
+$border-shadow-style : 1px 0 0 0 $border-color,
+                      0 1px 0 0 $border-color,
+                      1px 1px 0 0 $border-color,
+                      1px 0 0 0 $border-color inset,
+                      0 1px 0 0 $border-color inset;
 
 /* 스타일 초기화 */
 html, body, div, span, applet, object, iframe,
@@ -126,11 +131,7 @@ body {
   font-size:1.6rem;
   /* border:1px solid $text-color; */
   /* border 겹침 현상때문에 shadow로 조정 */
-  box-shadow:1px 0 0 0 $border-color,
-             0 1px 0 0 $border-color,
-             1px 1px 0 0 $border-color,
-             1px 0 0 0 $border-color inset,
-             0 1px 0 0 $border-color inset;
+  box-shadow: $border-shadow-style
 }
 .menu-item a{
   width:100%;
