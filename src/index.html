@@ -1,14 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko-KR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>쇼핑몰!</title>
+  <title>빕다방</title>
   <link rel="stylesheet" href="./index.scss">
 </head>
 <body>
+  <!--
+  <div class="header">
+    <a href="#" class="logo">
+      <img src="https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Flogo.png?1541562675746" alt="빕다방">
+    </a>
+    <ul class="member-list">
+      <li><a href="#">로그인</a></li>
+      <li><a href="#">회원가입</a></li>
+      <li><a href="#">장바구니</a></li>
+    </ul>
+  </div>
+  <nav class="navigation">
+    <h1 class="page-title">메뉴명</h1>
+    <ul class="menu-list clearfix">
+      <li class="menu-item"><a href="#">커피</a></li>
+      <li class="menu-item"><a href="#">음료</a></li>
+      <li class="menu-item"><a href="#">아이스크림</a></li>
+      <li class="menu-item"><a href="#">디저트</a></li>
+      <li class="menu-item"><a href="#">빕스치노</a></li>
+    </ul>
+  </nav>
+  -->
+
   <!-- 템플릿을 이곳에 작성해주세요 -->
+  <!-- 1. 로그인 화면 -->
+  <template id="login-form">
+    <form class="login">
+      <fieldset>
+        <legend>로그인</legend>
+        <label for="username">ID</label>
+        <input type="text" name="username" id="username">
+        <label for="password">PW</label>
+        <input type="text" name="password" id="password">
+        <button>로그인</button>
+      </fieldset>
+    </form>
+  </template>
+
+  <!-- 2-1. 메인화면(카테고리 전체보기) -->
+  <template id="products-form">
+    <ul class="products-list">
+    </ul>
+  </template>
+
+  <!-- 2-2. 메인화면 ul사이에 넣을 상품 아이템들 -->
+  <template id="product-items">
+    <li>
+      <img class="thumbnail">
+      <p class="name"></p>
+      <p class="price"></p>
+    </li>
+  </template>
 
   <div class="root"></div>
   <script src="./index.js"></script>

@@ -1,0 +1,295 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin"
+    },
+    {
+      "id": 2,
+      "username": "customer"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "category": "coffee",
+      "title": "앗!메리카노",
+      "description": "빽다방만의 맛과 향을 더한 100% 아라비카 로스팅 원두로 뽑아내 깊고 진한 맛의 앗!메리카노",
+      "mainImgUrl": "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Famericano.jpg?1541554872212",
+      "detailImgUrls": [
+        "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Famericano.jpg?1541554872212"
+      ]
+    },
+    {
+      "id": 2,
+      "category": "coffee",
+      "title": "원조커피",
+      "description": "시원달콤한 빽다방 대표메뉴, 믹스커피 종결자",
+      "mainImgUrl": "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fbasiccoffee.jpg?1541555827659",
+      "detailImgUrls": [
+        "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fbasiccoffee.jpg?1541555827659"
+      ]
+    },
+    {
+      "id": 3,
+      "category": "coffee",
+      "title": "빽's 라떼",
+      "description": "진한 에스프레소와 시원한 우유가 어우려져 탄생한 부드러운 빽다방 라떼",
+      "mainImgUrl": "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Flatte.jpg?1541555831386",
+      "detailImgUrls": [
+        "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Flatte.jpg?1541555831386"
+      ]
+    },
+    {
+      "id": 4,
+      "category": "coffee",
+      "title": "바닐라 라떼",
+      "description": "부드러운 우유와 달콤하고 은은한 바닐라가 조화를 이루는 음료",
+      "mainImgUrl": "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fvanillalatte.jpg?1541555830941",
+      "detailImgUrls": [
+        "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fvanillalatte.jpg?1541555830941"
+      ]
+    },
+    {
+      "id": 5,
+      "category": "coffee",
+      "title": "카라멜마키아또",
+      "description": "카라멜소스와 신선한 우유, 에스프레소로 맛을 낸 달콤한 빽다방 인기메뉴",
+      "mainImgUrl": "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fcaramel.jpg?1541555828605",
+      "detailImgUrls": [
+        "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fcaramel.jpg?1541555828605"
+      ]
+    },
+    {
+      "id": 6,
+      "category": "drink",
+      "title": "완전초코",
+      "description": "초코에 퐁당 빠지고 싶을때~!? 진짜~! 다크초콜렛이 올라간 완~전 진한 초코라떼",
+      "mainImgUrl": "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fchoco.jpg?1541555828081",
+      "detailImgUrls": [
+        "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fchoco.jpg?1541555828081"
+      ]
+    },
+    {
+      "id": 7,
+      "category": "drink",
+      "title": "녹차라떼",
+      "description": "제주산 녹차를 사용하여 진하고 부드러운 녹차라떼",
+      "mainImgUrl": "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fgreentealatte.jpg?1541555830420",
+      "detailImgUrls": [
+        "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fgreentealatte.jpg?1541555830420"
+      ]
+    },
+    {
+      "id": 8,
+      "category": "drink",
+      "title": "완전복숭아",
+      "description": "달콤한 복숭아의 진한 맛이 그대로! 시원하게 즐기는 완전복숭아",
+      "mainImgUrl": "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fpeachjuice.jpg?1541555831916",
+      "detailImgUrls": [
+        "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fpeachjuice.jpg?1541555831916"
+      ]
+    },
+    {
+      "id": 9,
+      "category": "icecream",
+      "title": "노말한소프트",
+      "description": "입안에서 부드럽게 사르륵 녹는 마성의 아이스크림",
+      "mainImgUrl": "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fsofticecream.jpg?1541555827640",
+      "detailImgUrls": [
+        "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fsofticecream.jpg?1541555827640"
+      ]
+    },
+    {
+      "id": 10,
+      "category": "icecream",
+      "title": "빽엔나",
+      "description": "부드러운 아이스크림과 쌉싸름한 아메리카노가 조화를 이루는 빽다방식 아포가토",
+      "mainImgUrl": "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Faffogato.jpg?1541555828323",
+      "detailImgUrls": [
+        "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Faffogato.jpg?1541555828323"
+      ]
+    },
+    {
+      "id": 11,
+      "category": "dessert",
+      "title": "사라다빵",
+      "description": "어린시절 빵집에서 사먹던 추억의 감자 사라다빵",
+      "mainImgUrl": "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fsaladbread.jpg?1541555829449",
+      "detailImgUrls": [
+        "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fsaladbread.jpg?1541555829449"
+      ]
+    },
+    {
+      "id": 12,
+      "category": "dessert",
+      "title": "명란마요빵",
+      "description": "짭조름한 명란과 고소하고 부드러운 감자샐러드가 한데 어우러진 명란마요빵",
+      "mainImgUrl": "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fsalted-pollack-roe-mayo-bread.jpg?1541555829001",
+      "detailImgUrls": [
+        "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fsalted-pollack-roe-mayo-bread.jpg?1541555829001"
+      ]
+    },
+    {
+      "id": 13,
+      "category": "ccino",
+      "title": "녹차빽스치노",
+      "description": "제주산 녹차를 사용하여 부드럽고 진한 맛의 빽스치노",
+      "mainImgUrl": "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fgreentea-ccino.jpg?1541555829935",
+      "detailImgUrls": [
+        "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fgreentea-ccino.jpg?1541555829935"
+      ]
+    }
+  ],
+  "options": [
+    {
+      "id": 1,
+      "productId": 1,
+      "title": "hot",
+      "price": 1500
+    },
+    {
+      "id": 2,
+      "productId": 1,
+      "title": "ice",
+      "price": 2000
+    },
+    {
+      "id": 3,
+      "productId": 2,
+      "title": "hot",
+      "price": 2000
+    },
+    {
+      "id": 4,
+      "productId": 2,
+      "title": "ice",
+      "price": 2500
+    },
+    {
+      "id": 5,
+      "productId": 3,
+      "title": "hot",
+      "price": 2500
+    },
+    {
+      "id": 6,
+      "productId": 3,
+      "title": "ice",
+      "price": 3000
+    },
+    {
+      "id": 7,
+      "productId": 4,
+      "title": "hot",
+      "price": 3000
+    },
+    {
+      "id": 8,
+      "productId": 4,
+      "title": "ice",
+      "price": 3500
+    },
+    {
+      "id": 9,
+      "productId": 5,
+      "title": "hot",
+      "price": 3000
+    },
+    {
+      "id": 10,
+      "productId": 5,
+      "title": "ice",
+      "price": 3500
+    },
+    {
+      "id": 11,
+      "productId": 6,
+      "title": "hot",
+      "price": 3000
+    },
+    {
+      "id": 12,
+      "productId": 6,
+      "title": "ice",
+      "price": 3500
+    },
+    {
+      "id": 13,
+      "productId": 7,
+      "title": "hot",
+      "price": 3000
+    },
+    {
+      "id": 14,
+      "productId": 7,
+      "title": "ice",
+      "price": 3500
+    },
+    {
+      "id": 15,
+      "productId": 8,
+      "title": "ice",
+      "price": 4500
+    },
+    {
+      "id": 16,
+      "productId": 9,
+      "title": "ice",
+      "price": 1500
+    },
+    {
+      "id": 17,
+      "productId": 10,
+      "title": "hot",
+      "price": 3000
+    },
+    {
+      "id": 18,
+      "productId": 10,
+      "title": "ice",
+      "price": 3500
+    },
+    {
+      "id": 19,
+      "productId": 11,
+      "title": "ice",
+      "price": 2000
+    },
+    {
+      "id": 20,
+      "productId": 12,
+      "title": "ice",
+      "price": 3500
+    },
+    {
+      "id": 21,
+      "productId": 13,
+      "title": "ice",
+      "price": 3500
+    }
+  ],
+  "cartItems": [
+    {
+      "id": 1,
+      "userId": 2,
+      "optionId": 1,
+      "quantity": 2,
+      "orderId": -1
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "optionId": 2,
+      "quantity": 3,
+      "orderId": 1
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "userId": 2,
+      "orderTime": 1541501826042
+    }
+  ]
+}

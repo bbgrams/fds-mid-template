@@ -1,5 +1,144 @@
-$main-color: skyblue;
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,700');
 
-body {
-  background-color: $main-color;
+$main-color: #ffe600;
+$sub-color:#0f357d;
+$text-color: #202020;
+$border-color: #acacac;
+
+/* 스타일 초기화 */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video{
+  margin:0; padding:0; border:0; box-sizing: border-box;
+  font-family: 'Noto Sans KR', sans-serif; color:$text-color;
+  text-decoration: none; list-style: none; border-collapse: collapse;
+  border-spacing: 0;
 }
+/* HTML5 display-role reset for older browsers */
+/* 익스플로러 하위버전은 해당 태그를 인식하지 못한다. 인식하지 못하는 태그는 inline 요소로 들어가기때문에 width, height등의 속성 설정이 안된다. */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, main {
+	display: block;
+}
+ul {
+    list-style: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* CSS 모듈 */
+.clearfix::after{
+    content: "";
+    display: block;
+    clear:both;
+}
+/* 숨김 콘텐츠 */
+.readable-hidden, .skip-nav, legend{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    margin: -1px;
+    clip: rect(0, 0, 0, 0);
+}
+.skip-nav:focus{
+    width: 100%;
+    height:auto;
+    padding: 1em;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    clip: rect(auto, auto, auto, auto);
+    z-index: 100;
+}
+html{
+  font-size:10px;
+}
+img{
+  width:100%
+}
+body {
+  background-color: #fff;
+  min-height:100vh;
+}
+.header{
+  width: 1200px;
+  margin: 0 auto;
+  padding:15px 0;
+}
+.logo{
+  display:inline-block;
+  width: 194px;
+}
+.member-list{
+  text-align:right;
+  float: right;
+  margin-top:20px
+}
+.member-list li{
+  display:inline-block;
+  margin-left:15px;
+  font-size:1.4rem;
+}
+.member-list li:after{
+  content: '|';
+  display: inline-block;
+  margin-left:15px
+}
+.member-list li:last-child:after{
+  content: '';
+  margin: 0;
+}
+.member-list a{
+  color:$text-color;
+}
+.navigation{
+  min-width:1200px;
+  width: 100%;
+  height: 400px;
+  background: url(https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fbg-menu.jpg?1541568447816) no-repeat 0 0;
+  background-size: cover;
+  text-align: center;
+  padding:150px 0 0 0;
+}
+.page-title{
+  font-size:4rem;
+}
+.menu-list{
+  width:1100px;
+  margin: 106px 50px 0 50px;
+}
+.menu-item{
+  float:left;
+  width:20%;
+  background-color:#fff;
+  font-size:1.6rem;
+  /* border:1px solid $text-color; */
+  /* border 겹침 현상때문에 shadow로 조정 */
+  box-shadow:1px 0 0 0 $border-color,
+             0 1px 0 0 $border-color,
+             1px 1px 0 0 $border-color,
+             1px 0 0 0 $border-color inset,
+             0 1px 0 0 $border-color inset;
+}
+.menu-item a{
+  width:100%;
+  padding:10px 0;
+  display:inline-block;
+}
+
+.login{
+  background-color: coral;
+}
+
