@@ -1,15 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,700');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:700');
 
 $main-color: #ffe600;
 $sub-color:#0f357d;
 $text-color: #202020;
-$border-color: #acacac;
+$border-color: #c8c7c7;
 $box-shadow-style : 1px 0 0 0 $border-color,
                       0 1px 0 0 $border-color,
                       1px 1px 0 0 $border-color,
                       1px 0 0 0 $border-color inset,
                       0 1px 0 0 $border-color inset;
 $main-size:1200px;
+$montserrat:'Montserrat', sans-serif;
 
 /* 스타일 초기화 */
 html, body, div, span, applet, object, iframe,
@@ -23,7 +25,7 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
-time, mark, audio, video{
+time, mark, audio, video, fieldset, button{
   margin:0; padding:0; border:0; box-sizing: border-box;
   font-family: 'Noto Sans KR', sans-serif; color:$text-color;
   text-decoration: none; list-style: none; border-collapse: collapse;
@@ -35,6 +37,9 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section, main {
 	display: block;
 }
+body{
+  font-size:1.6rem;
+}
 ul {
     list-style: none;
 }
@@ -42,13 +47,27 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-/* CSS 모듈 */
+input[type="text"],input[type="password"]{
+  box-sizing: border-box;
+  padding:0 12px;
+  width:100%;
+  height: 46px;
+  border:1px solid $border-color;
+  font-size:1.6rem;
+}
+button{
+  padding:0 12px;
+  height: 46px;
+  font-size:1.8rem;
+  cursor: pointer;
+}
+/******** CSS 모듈 ********/
 .clearfix::after{
     content: "";
     display: block;
     clear:both;
 }
-/* 숨김 콘텐츠 */
+/******** 숨김 콘텐츠 ********/
 .readable-hidden, .skip-nav, legend{
     position: absolute;
     width: 1px;
@@ -78,7 +97,7 @@ body {
   background-color: #fff;
   min-height:100vh;
 }
-/* 공용 헤더 스타일 */
+/******** 공용 헤더 스타일 ********/
 .header{
   width: $main-size;
   margin: 0 auto;
@@ -96,7 +115,6 @@ body {
 .member-list li{
   display:inline-block;
   margin-left:15px;
-  font-size:1.4rem;
 }
 .member-list li:after{
   content: '|';
@@ -129,27 +147,30 @@ body {
 .menu-item{
   float:left;
   width:20%;
-  background-color:#fff;
-  font-size:1.6rem;
   /* border:1px solid $text-color; */
   /* border 겹침 현상때문에 shadow로 조정 */
-  box-shadow: $box-shadow-style
 }
 .menu-item a{
   width:100%;
   padding:10px 0;
   display:inline-block;
+  background-color:#fff;
+  box-shadow: $box-shadow-style;
+}
+.menu-item a:hover{
+  background-color: $main-color;
+
 }
 
-.root{
+main{
   width:$main-size;
   margin: 0 auto;
 }
-/* 공용 푸터 스타일 */
+/******** 공용 푸터 스타일 ********/
 .footer{
-  margin-top:50px;
+  margin-top:130px;
   padding:40px;
-  border-top:4px solid $main-color;
+  border-top:3px dotted #dadada;
   font-size:1.4rem;
   line-height: 1.8;
 }
@@ -169,7 +190,8 @@ body {
 .footer a{
   color:$border-color;
 }
-/* 상품 리스트 */
+
+/******** 상품 리스트 ********/
 .products-list{
   margin-top:20px;
 }
@@ -178,17 +200,42 @@ body {
   width:25%;
   box-shadow: $box-shadow-style;
   padding:20px;
+  cursor : pointer;
 }
 .item .name{
   text-align: center;
   font-size:1.5rem;
 }
 
+/******** 로그인 화면 ********/
 
 .login{
-  background-color: coral;
+  width:500px;
+  margin: 80px auto 0 auto;
+}
+.login-title{
+  font-size:5rem;
+  text-align: center;
+  color:$main-color;
+  font-family: $montserrat;
+  margin-bottom:50px;
+}
+.login-input{
+  display:block;
+  margin-bottom:15px;
+}
+.login button{
+  width:100%;
+  background-color:$main-color;
+  height:60px;
+  font-weight:700;
+  font-size:2.2rem;
+
 }
 
-
+/****** 상품 페이지 ******/
+.detail-img{
+  width:100px;
+}
 
 

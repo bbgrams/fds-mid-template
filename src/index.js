@@ -20,6 +20,7 @@ const templates = {
   loginForm : document.querySelector('#login-form').content,
   productsForm : document.querySelector('#products-form').content,
   productsItems: document.querySelector('#product-items').content,
+  productsDetail: document.querySelector('#products-detail').content,
 
 }
 
@@ -34,7 +35,36 @@ let pageTitle= '빕다방'
 // 4. 내용 채우기
 // 5. 이벤트 리스너 등록하기
 // 6. 템플릿을 문서에 삽입
-// 2. 메인화면
+
+// *** 3. 상품 페이지 ***
+async function drawDetail(productId){
+// 1. 템플릿 복사
+  const frag = document.importNode(templates.productsDetail, true)
+// 2. 요소 선택
+  const titleEl = frag.querySelector('.detail-title');
+  const imgEl = frag.querySelector(".img");
+  const priceEl = frag.querySelector('.detail-price');
+  const infoEl = frag.querySelector('.detail-info')
+
+// 3. 필요한 데이터 불러오기
+  const { data : {title, price, description, mainImgUrl} } = await api.get('/products/' + productId, {
+    params:{
+      _embed : 'options'
+    }
+  })
+
+// 4. 내용 채우기
+  titleEl.textContent = title;
+  imgEl.setAttribute('src', mainImgUrl);
+  infoEl.textContent = description;
+
+// 5. 이벤트 리스너 등록하기
+// 6. 템플릿을 문서에 삽입
+rootEl.textContent=''
+rootEl.appendChild(frag)
+}
+
+// *** 2. 메인화면 ***
 async function drawMain() {
   pageTitle = '빕다방의 메뉴' // 메인화면일 때의 타이틀 텍스트
   // 1. 템플릿 복사
@@ -56,47 +86,55 @@ async function drawMain() {
     thumbnailEl.setAttribute('src', productsItems.mainImgUrl);
     nameEl.textContent = productsItems.title;
     // 5. 이벤트 리스너 등록하기
+
     // 6. 템플릿을 문서에 삽입
     productListEl.appendChild(frag)
 
   }
   // 5. 이벤트 리스너 등록하기
   // 6. 템플릿을 문서에 삽입
+  rootEl.textContent=''
   rootEl.appendChild(frag)
 }
 
 
-// 1. 로그인 화면
-async function drawLoginForm(){
+// *** 1. 로그인 화면 ***
+async function drawLoginForm() {
   // 1. 템플릿 복사
-  const frag = document.importNode(templates.loginForm, true)
+  const frag = document.importNode(templates.loginForm, true);
   // 2. 요소 선택
-  const formEl = frag.querySelector('.login')
+  const formEl = frag.querySelector(".login");
+  const navigationEl = document.querySelector(".navigation"); // 로그인 화면에서 메뉴를 보이지않게 하기위해.
   // 3. 필요한 데이터 불러오기
-
   // 4. 내용 채우기
+  pageTitle = "빕다방에 오신것을 환영합니다 :)"; // 페이지 타이틀 설정
   // 5. 이벤트 리스너 등록하기
-  formEl.addEventListener('submit', async e => {
+  formEl.addEventListener("submit", async e => {
     e.preventDefault();
     const username = e.target.elements.username.value;
     const password = e.target.elements.password.value;
 
-    const res = await api.post('/users/login', {
+    const res = await api.post("/users/login", {
       username,
       password
-    })
+    });
 
-    localStorage.setItem('token', res.data.token)
-    drawMain()
-    alert(`${username}님 로그인 되었습니다.`)
-  })
+    localStorage.setItem("token", res.data.token);
+    drawMain();
+    alert(`${username}님 로그인 되었습니다.`);
+
+    drawMain();
+  });
   // 6. 템플릿을 문서에 삽입
-  drawMain()
-  rootEl.textContent = '';
-  rootEl.appendChild(frag)
+  rootEl.textContent = "";
+  rootEl.appendChild(frag);
+
+  // 로그인 화면에서 메뉴를 보이지않게 하기위한 작업
+  // document.querySelector(".navigation").removeChild(document.querySelector('.menu-list'))
+
 }
 
-drawMain()
+drawDetail(2);
 
 pageTitleEl.textContent = pageTitle; // 페이지별 타이틀
 

@@ -29,47 +29,70 @@
       <li class="menu-item"><a href="#">빕스치노</a></li>
     </ul>
   </nav>
+  <main>
+    <!-- 템플릿을 이곳에 작성해주세요 -->
+    <!-- 1. 로그인 화면 -->
+    <template id="login-form">
+      <form class="login">
+        <fieldset>
+          <legend>로그인</legend>
+          <p class="login-title">Sign in 👍 </p>
+          <label for="username" class="readable-hidden">ID</label>
+          <input type="text" name="username" id="username" class="login-input">
+          <label for="password" class="readable-hidden">PW</label>
+          <input type="password" name="password" id="password" class="login-input">
+          <button>로그인</button>
+        </fieldset>
+      </form>
+    </template>
 
-  <!-- 템플릿을 이곳에 작성해주세요 -->
-  <!-- 1. 로그인 화면 -->
-  <template id="login-form">
-    <form class="login">
-      <fieldset>
-        <legend>로그인</legend>
-        <label for="username">ID</label>
-        <input type="text" name="username" id="username">
-        <label for="password">PW</label>
-        <input type="text" name="password" id="password">
-        <button>로그인</button>
-      </fieldset>
-    </form>
-  </template>
+    <!-- 2-1. 메인화면(카테고리 전체보기) -->
+    <template id="products-form">
+      <ul class="products-list clearfix">
+      </ul>
+    </template>
 
-  <!-- 2-1. 메인화면(카테고리 전체보기) -->
-  <template id="products-form">
-    <ul class="products-list clearfix">
-    </ul>
-  </template>
+    <!-- 2-2. 메인화면 ul사이에 넣을 상품 아이템들 -->
+    <template id="product-items">
+      <li class="item">
+        <img class="thumbnail">
+        <p class="name"></p>
+      </li>
+    </template>
 
-  <!-- 2-2. 메인화면 ul사이에 넣을 상품 아이템들 -->
-  <template id="product-items">
-    <li class="item">
-      <img class="thumbnail">
-      <p class="name"></p>
-    </li>
-  </template>
+    <!-- 3. 상품 페이지 -->
+    <template id="products-detail">
+      <dl class="detail-thumbnail-count">
+        <dt class="detail-title"></dt>
+        <dd class="detail-img">
+          <img class="img">
+        </dd>
+        <dd class="detail-price"></dd>
+        <dd class="detail-count">
+          <button class="count-minus">-</button>
+          <label for="buy-count">구매수량</label>
+          <input type="number" name="" id="buy-count">
+          <button class="count-plus">+</button>
+        </dd>
+        <dd class="detail-button">
+          <button class="buy">구매하기</button>
+          <button class="cart">장바구니에 담기</button>
+        </dd>
+      </dl>
+      <p class="detail-info"></p>
+    </template>
 
-  <div class="root"></div>
-
+    <div class="root"></div>
+  </main>
   <!-- 공용푸터 -->
   <div class="footer">
     <div class="profile">
       <img src="https://avatars3.githubusercontent.com/u/42929997?s=460&v=4" alt="">
       <ul>
         <li>made by Shim Soyoung</li>
-        <li>Github : <a href="https://github.com/bbgrams">https://github.com/bbgrams</a></li>
-        <li>blog : <a href="https://bbgrams.github.io/">https://bbgrams.github.io/</a></li>
-        <li>mail : <a href="mailto:sovv12@gmail.com">sovv12@gmail.com</a></li>
+        <li>Github : <a href="https://github.com/bbgrams" target="_blank">https://github.com/bbgrams</a></li>
+        <li>blog : <a href="https://bbgrams.github.io/" target="_blank">https://bbgrams.github.io/</a></li>
+        <li>mail : <a href="mailto:sovv12@gmail.com" target="_blank">sovv12@gmail.com</a></li>
       </ul>
     </div>
   </div>
