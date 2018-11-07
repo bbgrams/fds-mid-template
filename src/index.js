@@ -43,7 +43,6 @@ async function drawDetail(productId){
 // 2. 요소 선택
   const titleEl = frag.querySelector('.detail-title');
   const imgEl = frag.querySelector(".img");
-  const priceEl = frag.querySelector('.detail-price');
   const infoEl = frag.querySelector('.detail-info')
 
 // 3. 필요한 데이터 불러오기
@@ -57,6 +56,7 @@ async function drawDetail(productId){
   titleEl.textContent = title;
   imgEl.setAttribute('src', mainImgUrl);
   infoEl.textContent = description;
+  console.log(price)
 
 // 5. 이벤트 리스너 등록하기
 // 6. 템플릿을 문서에 삽입

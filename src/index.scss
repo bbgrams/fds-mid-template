@@ -191,9 +191,11 @@ main{
   color:$border-color;
 }
 
+.root{
+  margin-top:20px;
+}
 /******** 상품 리스트 ********/
 .products-list{
-  margin-top:20px;
 }
 .item{
   float:left;
@@ -234,8 +236,22 @@ main{
 }
 
 /****** 상품 페이지 ******/
-.detail-img{
-  width:100px;
+.detail-thumbnail-count{
+  // background-color: coral;
+
+  dd, dt{
+    float:right;
+    width:800px;
+    padding:10px 0 0 50px
+  }
+  .detail-img{
+    width:400px;
+    float:left;
+    box-shadow: $box-shadow-style;
+    padding:20px;
+  }
+
+
 }
 
 

@@ -62,15 +62,16 @@
 
     <!-- 3. 상품 페이지 -->
     <template id="products-detail">
-      <dl class="detail-thumbnail-count">
+      <dl class="detail-thumbnail-count clearfix">
         <dt class="detail-title"></dt>
         <dd class="detail-img">
           <img class="img">
         </dd>
-        <dd class="detail-price"></dd>
+        <dd class="detail-price">HOT<span class="price-hot">2500</span>원</dd>
+        <dd class="detail-price">ICE<span class="price-ice">2500</span>원</dd>
         <dd class="detail-count">
           <button class="count-minus">-</button>
-          <label for="buy-count">구매수량</label>
+          <label for="buy-count" class="readable-hidden">구매수량</label>
           <input type="number" name="" id="buy-count">
           <button class="count-plus">+</button>
         </dd>
