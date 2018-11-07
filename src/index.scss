@@ -9,6 +9,7 @@ $box-shadow-style : 1px 0 0 0 $border-color,
                       1px 1px 0 0 $border-color,
                       1px 0 0 0 $border-color inset,
                       0 1px 0 0 $border-color inset;
+$main-size:1200px;
 
 /* 스타일 초기화 */
 html, body, div, span, applet, object, iframe,
@@ -77,8 +78,9 @@ body {
   background-color: #fff;
   min-height:100vh;
 }
+/* 공용 헤더 스타일 */
 .header{
-  width: 1200px;
+  width: $main-size;
   margin: 0 auto;
   padding:15px 0;
 }
@@ -109,7 +111,7 @@ body {
   color:$text-color;
 }
 .navigation{
-  min-width:1200px;
+  min-width:$main-size;
   width: 100%;
   height: 400px;
   background: url(https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fbg-menu.jpg?1541568447816) no-repeat 0 0;
@@ -121,8 +123,8 @@ body {
   font-size:4rem;
 }
 .menu-list{
-  width:1100px;
-  margin: 106px 50px 0 50px;
+  width:$main-size;
+  margin: 106px auto 0 auto;
 }
 .menu-item{
   float:left;
@@ -140,8 +142,32 @@ body {
 }
 
 .root{
-  width:1200px;
+  width:$main-size;
   margin: 0 auto;
+}
+/* 공용 푸터 스타일 */
+.footer{
+  margin-top:50px;
+  padding:40px;
+  border-top:4px solid $main-color;
+  font-size:1.4rem;
+  line-height: 1.8;
+}
+.profile{
+  width:$main-size;
+  margin:0 auto;
+}
+.footer img {
+  border-radius: 5px;
+  width: 150px;
+}
+.footer ul{
+  display:inline-block;
+  margin-left:30px;
+
+}
+.footer a{
+  color:$border-color;
 }
 /* 상품 리스트 */
 .products-list{
@@ -162,4 +188,7 @@ body {
 .login{
   background-color: coral;
 }
+
+
+
 
