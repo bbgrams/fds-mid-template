@@ -96,7 +96,7 @@ async function drawLoginForm(){
   rootEl.appendChild(frag)
 }
 
-// drawMain()
+drawMain()
 
 pageTitleEl.textContent = pageTitle; // 페이지별 타이틀
 
