@@ -45,11 +45,26 @@ async function drawCart(){
   // 1. 템플릿 복사
   const frag = document.importNode(templates.cartForm, true)
   // 2. 요소 선택
-
+  const tbodyEl = frag.querySelector('tbody')
   // 3. 필요한 데이터 불러오기
-  const {data : cartList} = await api.get('/cartItems')
+  // cartList : 장바구니에 담긴 option 데이터객체를 포함한 배열
+  const {data : cartList} = await api.get('/cartItems', {
+    params : {
+      _expand : "option",
+      ordered : false
+    }
+  })
+  const params = new URLSearchParams()
+  cartList.forEach( c => {
+    params.append('id', c.option.productId)
+  })
+  // productList : 장바구니에 담긴 optionId의 products 배열
+  const {data:productList} = await api.get('/products?', {
+    params
+  })
+  console.log(cartList)
+  console.log(productList)
   // 4. 내용 채우기
-  // console.log(cartList)
   for(const cartItem of cartList){
     // cartList 배열에 저장된 아이템 개수만큼 tr을 추가할수있게 반복문을 돌린다
     // console.log(cartItem.quantity)
@@ -61,12 +76,17 @@ async function drawCart(){
     const cartCountEl = frag.querySelector('.cart-count')
     const cartPriceEl = frag.querySelector('.cart-price')
     // 3. 필요한 데이터 불러오기
-    // 장바구니에 들어있는 optionId의 option 내용
-    const {data : optionList} = await api.get('/options?id=' + cartItem.optionId)
-    console.log(optionList);
-    const { data: productList } = await api.get("/products?id=" + optionList.productId);
-    console.log(productList)
+    const productItem = productList.find(item => cartItem.option.productId === item.id)
     // 4. 내용 채우기
+    cartImgEl.setAttribute("src", productItem.mainImgUrl);
+    cartTitleEl.textContent = productItem.title;
+    cartStateEl.textContent=cartItem.option.title
+    cartCountEl.textContent=cartItem.quantity
+    cartPriceEl.textContent=cartItem.option.price * cartItem.quantity
+
+    // 6. 템플릿을 문서에 삽입
+    tbodyEl.appendChild(frag)
+
 
 
   }
@@ -141,14 +161,15 @@ async function drawDetail(productId){
   // 5. 이벤트 리스너 등록하기
   // 장바구니 담기
   cartButton.addEventListener('click', async e => {
-    const quantity = detailCountEl.value;
-    const optionId = detailSelectOptionEl.value;
+    const quantity = parseInt(detailCountEl.value);
+    const optionId = parseInt(detailSelectOptionEl.value);
 
     await api.post('/cartItems', {
       quantity,
       optionId,
       ordered:false
     })
+    drawCart();
 
   })
   // 6. 템플릿을 문서에 삽입
@@ -284,10 +305,10 @@ document.querySelector(".category-icecream").addEventListener("click", e => {
 document.querySelector('.category-ccino').addEventListener('click',  e =>{
   drawCategoryList("ccino");
 })
-drawCart()
-// drawDetail(11);
+// drawCart()
+// drawDetail(10);
 // drawLoginForm();
-// drawMain();
+drawMain();
 
 
 pageTitleEl.textContent = pageTitle; // 페이지별 타이틀
