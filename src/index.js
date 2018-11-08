@@ -248,9 +248,9 @@ document.querySelector('.category-ccino').addEventListener('click',  e =>{
   drawCategoryList("ccino");
 })
 // drawCart()
-// drawDetail(11);
+drawDetail(11);
 // drawLoginForm();
-drawMain();
+// drawMain();
 
 
 pageTitleEl.textContent = pageTitle; // 페이지별 타이틀
