@@ -88,7 +88,10 @@ async function drawMain() {
     nameEl.textContent = productsItems.title;
     // 5. 이벤트 리스너 등록하기
     itemEl.addEventListener("click", async e => {
+
+      document.body.classList.add('loading-indicator'); // 로딩 인디케이터 추가
       drawDetail(productsItems.id);
+      document.body.classList.remove('loading-indicator'); // 로딩 인디케이터 추가
     });
     // 6. 템플릿을 문서에 삽입
     productListEl.appendChild(frag)
@@ -113,6 +116,7 @@ async function drawLoginForm() {
   pageTitle = "빕다방에 오신것을 환영합니다 :)"; // 페이지 타이틀 설정
   // 5. 이벤트 리스너 등록하기
   formEl.addEventListener("submit", async e => {
+    document.body.classList.add('loading-indicator'); // 로딩 인디케이터 추가
     e.preventDefault();
     const username = e.target.elements.username.value;
     const password = e.target.elements.password.value;
@@ -124,6 +128,7 @@ async function drawLoginForm() {
 
     localStorage.setItem("token", res.data.token);
     drawMain();
+    document.body.classList.remove('loading-indicator'); // 로딩 인디케이터 삭제
     alert(`${username}님 로그인 되었습니다.`);
 
     drawMain();

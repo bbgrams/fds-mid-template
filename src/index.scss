@@ -190,9 +190,22 @@ main{
 .footer a{
   color:$border-color;
 }
+/****** 로딩 인디케이터 *******/
+body.loading-indicator:after{
+  background-color: rgba(0,0,0,0.5);
+  background-image: url(https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fspinning-circles.svg?1541642702611);
+  background-repeat: no-repeat;
+  background-position:50% 50%;
+  position: fixed;
+  top:0;
+  left:0;
+  bottom: 0;
+  right: 0;
+  content:'';
+}
 
 .root{
-  margin-top:20px;
+  margin-top:40px;
 }
 /******** 상품 리스트 ********/
 .products-list{
@@ -243,6 +256,10 @@ main{
     float:right;
     width:800px;
     padding:10px 0 0 50px
+  }
+  dt{
+    font-size:3.6rem;
+    font-weight: 700;
   }
   .detail-img{
     width:400px;
