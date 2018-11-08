@@ -17,14 +17,15 @@ api.interceptors.request.use(function (config) {
 });
 
 const templates = {
-  loginForm : document.querySelector('#login-form').content,
-  productsForm : document.querySelector('#products-form').content,
-  productsItems: document.querySelector('#product-items').content,
-  productsDetail: document.querySelector('#products-detail').content,
-  detailSelectForm: document.querySelector('#detail-select-form').content,
-  detailStateForm: document.querySelector('#detail-state-price-form').content,
-  cartForm: document.querySelector('#cart-form').content,
-}
+  loginForm: document.querySelector("#login-form").content,
+  productsForm: document.querySelector("#products-form").content,
+  productsItems: document.querySelector("#product-items").content,
+  productsDetail: document.querySelector("#products-detail").content,
+  detailSelectForm: document.querySelector("#detail-select-form").content,
+  detailStateForm: document.querySelector("#detail-state-price-form").content,
+  cartForm: document.querySelector("#cart-form").content,
+  cartItemForm: document.querySelector("#cart-item").content,
+};
 
 const rootEl = document.querySelector('.root')
 const pageTitleEl = document.querySelector('.page-title') // 페이지 별 타이틀
@@ -46,7 +47,30 @@ async function drawCart(){
   // 2. 요소 선택
 
   // 3. 필요한 데이터 불러오기
+  const {data : cartList} = await api.get('/cartItems')
   // 4. 내용 채우기
+  // console.log(cartList)
+  for(const cartItem of cartList){
+    // cartList 배열에 저장된 아이템 개수만큼 tr을 추가할수있게 반복문을 돌린다
+    // console.log(cartItem.quantity)
+    const frag = document.importNode(templates.cartItemForm, true) // 1. 템플릿복사
+    // 2. 요소 선택
+    const cartImgEl = frag.querySelector('.cart-img-src')
+    const cartTitleEl = frag.querySelector('.cart-title')
+    const cartStateEl = frag.querySelector('.cart-state')
+    const cartCountEl = frag.querySelector('.cart-count')
+    const cartPriceEl = frag.querySelector('.cart-price')
+    // 3. 필요한 데이터 불러오기
+    // 장바구니에 들어있는 optionId의 option 내용
+    const {data : optionList} = await api.get('/options?id=' + cartItem.optionId)
+    console.log(optionList);
+    const { data: productList } = await api.get("/products?id=" + optionList.productId);
+    console.log(productList)
+    // 4. 내용 채우기
+
+
+  }
+
   // 5. 이벤트 리스너 등록하기
   // 6. 템플릿을 문서에 삽입
   rootEl.textContent=''
@@ -66,6 +90,7 @@ async function drawDetail(productId){
   const detailPriceAll = frag.querySelector(".price-all");
   const detailCountEl = frag.querySelector('#buy-count')
   const detailPriceForm = frag.querySelector(".detail-price-form");
+  const cartButton = frag.querySelector('.cart');
   let priceAll = 0;
 
 
@@ -114,6 +139,18 @@ async function drawDetail(productId){
   })
 
   // 5. 이벤트 리스너 등록하기
+  // 장바구니 담기
+  cartButton.addEventListener('click', async e => {
+    const quantity = detailCountEl.value;
+    const optionId = detailSelectOptionEl.value;
+
+    await api.post('/cartItems', {
+      quantity,
+      optionId,
+      ordered:false
+    })
+
+  })
   // 6. 템플릿을 문서에 삽입
   rootEl.textContent=''
   rootEl.appendChild(frag)
@@ -247,10 +284,19 @@ document.querySelector(".category-icecream").addEventListener("click", e => {
 document.querySelector('.category-ccino').addEventListener('click',  e =>{
   drawCategoryList("ccino");
 })
-// drawCart()
-drawDetail(11);
+drawCart()
+// drawDetail(11);
 // drawLoginForm();
 // drawMain();
 
 
 pageTitleEl.textContent = pageTitle; // 페이지별 타이틀
+
+
+
+
+
+
+// # 해야 될 것.
+// - 상품 상세페이지에서 +,- 버튼 누르면 수량 증가, 감소
+// - 상품 상세페이지에서 수량이 0 이하거나 음수일 때 알럿창 띄우기.
