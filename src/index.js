@@ -21,7 +21,8 @@ const templates = {
   productsForm : document.querySelector('#products-form').content,
   productsItems: document.querySelector('#product-items').content,
   productsDetail: document.querySelector('#products-detail').content,
-
+  detailSelectForm: document.querySelector('#detail-select-form').content,
+  detailStateForm: document.querySelector('#detail-state-price-form').content,
 }
 
 const rootEl = document.querySelector('.root')
@@ -44,6 +45,16 @@ async function drawDetail(productId){
   const titleEl = frag.querySelector('.detail-title');
   const imgEl = frag.querySelector(".img");
   const infoEl = frag.querySelector('.detail-info')
+  const detailFormEl = frag.querySelector(".detail-thumbnail-count");
+  const priceHotEl = frag.querySelector('.price-hot')
+  const priceIceEl = frag.querySelector('.price-ice')
+  const deleteHotEl = frag.querySelector('.detail-price-hot')
+  const detailSelectOptionEl = frag.querySelector(".detail-select-option");
+  const detailPriceAll = frag.querySelector(".price-all");
+  const detailCountEl = frag.querySelector('#buy-count')
+  const detailPriceForm = frag.querySelector(".detail-price-form");
+  let priceAll = 0;
+
 
 // 3. 필요한 데이터 불러오기
   const { data : {title, price, description, mainImgUrl, options} } = await api.get('/products/' + productId, {
@@ -56,15 +67,56 @@ async function drawDetail(productId){
   titleEl.textContent = title;
   imgEl.setAttribute('src', mainImgUrl);
   infoEl.textContent = description;
-  console.log(options)
-  // options[0]
+
+  // options[1] == undefined -> detail-price-hot 삭제
+  // if(options[1] !== undefined){
+  //   priceIceEl.textContent= options[0].price
+  //   priceHotEl.textContent= options[1].price
+  // }else{
+  //   detailFormEl.removeChild(deleteHotEl);
+  //   priceIceEl.textContent = options[0].price
+  // }
+
+  // options 배열을 순회하며 인덱스 갯수만큼 select 추가
+  options.forEach((optionitem, index) => {
+    console.log(optionitem.title);
+    console.log(optionitem.price);
+
+    const frag = document.importNode(templates.detailSelectForm, true); // 1.복사
+    const frag2 = document.importNode(templates.detailStateForm, true);
+    const selectOptionEl = frag.querySelector('option') // 2.요소 선택
+    const stateEl= frag2.querySelector('.state')
+    const statePriceEl = frag2.querySelector('.state-price')
+
+    selectOptionEl.setAttribute('value', optionitem.id) // 3. 내용 채우기
+    selectOptionEl.textContent = optionitem.title.toUpperCase()
+    stateEl.textContent = optionitem.title.toUpperCase()
+    statePriceEl.textContent = optionitem.price
+
+    detailSelectOptionEl.appendChild(frag) // 4. 삽입
+    detailPriceForm.appendChild(frag2)
+  })
+  // detailPriceAll 선택한 상품의 총 금액
+  // let priceAll = options[parseInt(selectOptionEl.value)].price * detailCountEl.value;
+  // ;
 
 
+  detailSelectOptionEl.addEventListener('change', async e => {
+    // select 요소에 선택이 일어났을때 이벤트 발생
+    console.log(e.target.value)
+    const {data : options} = await api.get(`/options/${e.target.value}`)
+    priceAll = options.price * detailCountEl.value
+    detailPriceAll.textContent = priceAll;
+    console.log(priceAll)
+  })
 
   // 5. 이벤트 리스너 등록하기
   // 6. 템플릿을 문서에 삽입
   rootEl.textContent=''
   rootEl.appendChild(frag)
+
+  // 총 금액 삽입
+  detailPriceAll.textContent = priceAll;
 }
 
 // *** 2. 메인화면 ***
@@ -145,9 +197,8 @@ async function drawLoginForm() {
 
 }
 
-drawDetail(13);
+drawDetail(11);
 // drawLoginForm();
 // drawMain();
 
 pageTitleEl.textContent = pageTitle; // 페이지별 타이틀
-
