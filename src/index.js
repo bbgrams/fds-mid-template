@@ -23,6 +23,7 @@ const templates = {
   productsDetail: document.querySelector('#products-detail').content,
   detailSelectForm: document.querySelector('#detail-select-form').content,
   detailStateForm: document.querySelector('#detail-state-price-form').content,
+  cartForm: document.querySelector('#cart-form').content,
 }
 
 const rootEl = document.querySelector('.root')
@@ -37,6 +38,22 @@ let pageTitle= '빕다방'
 // 5. 이벤트 리스너 등록하기
 // 6. 템플릿을 문서에 삽입
 
+
+// *** 4. 장바구니 ***
+async function drawCart(){
+  // 1. 템플릿 복사
+  const frag = document.importNode(templates.cartForm, true)
+  // 2. 요소 선택
+
+  // 3. 필요한 데이터 불러오기
+  // 4. 내용 채우기
+  // 5. 이벤트 리스너 등록하기
+  // 6. 템플릿을 문서에 삽입
+  rootEl.textContent=''
+  rootEl.appendChild(frag)
+}
+
+
 // *** 3. 상품 페이지 ***
 async function drawDetail(productId){
 // 1. 템플릿 복사
@@ -45,10 +62,6 @@ async function drawDetail(productId){
   const titleEl = frag.querySelector('.detail-title');
   const imgEl = frag.querySelector(".img");
   const infoEl = frag.querySelector('.detail-info')
-  const detailFormEl = frag.querySelector(".detail-thumbnail-count");
-  const priceHotEl = frag.querySelector('.price-hot')
-  const priceIceEl = frag.querySelector('.price-ice')
-  const deleteHotEl = frag.querySelector('.detail-price-hot')
   const detailSelectOptionEl = frag.querySelector(".detail-select-option");
   const detailPriceAll = frag.querySelector(".price-all");
   const detailCountEl = frag.querySelector('#buy-count')
@@ -68,20 +81,8 @@ async function drawDetail(productId){
   imgEl.setAttribute('src', mainImgUrl);
   infoEl.textContent = description;
 
-  // options[1] == undefined -> detail-price-hot 삭제
-  // if(options[1] !== undefined){
-  //   priceIceEl.textContent= options[0].price
-  //   priceHotEl.textContent= options[1].price
-  // }else{
-  //   detailFormEl.removeChild(deleteHotEl);
-  //   priceIceEl.textContent = options[0].price
-  // }
-
   // options 배열을 순회하며 인덱스 갯수만큼 select 추가
   options.forEach((optionitem, index) => {
-    console.log(optionitem.title);
-    console.log(optionitem.price);
-
     const frag = document.importNode(templates.detailSelectForm, true); // 1.복사
     const frag2 = document.importNode(templates.detailStateForm, true);
     const selectOptionEl = frag.querySelector('option') // 2.요소 선택
@@ -96,10 +97,6 @@ async function drawDetail(productId){
     detailSelectOptionEl.appendChild(frag) // 4. 삽입
     detailPriceForm.appendChild(frag2)
   })
-  // detailPriceAll 선택한 상품의 총 금액
-  // let priceAll = options[parseInt(selectOptionEl.value)].price * detailCountEl.value;
-  // ;
-
 
   detailSelectOptionEl.addEventListener('change', async e => {
     // select 요소에 선택이 일어났을때 이벤트 발생
@@ -109,6 +106,12 @@ async function drawDetail(productId){
     detailPriceAll.textContent = priceAll;
     console.log(priceAll)
   })
+  detailCountEl.addEventListener('change', async e => {
+    const { data: options } = await api.get(`/options/${detailSelectOptionEl.value}`)
+    console.log(e.target.value)
+    priceAll = e.target.value * options.price
+    detailPriceAll.textContent = priceAll;
+  })
 
   // 5. 이벤트 리스너 등록하기
   // 6. 템플릿을 문서에 삽입
@@ -117,6 +120,45 @@ async function drawDetail(productId){
 
   // 총 금액 삽입
   detailPriceAll.textContent = priceAll;
+}
+
+/*** 2-2. 카테고리별 보기 ***/
+async function drawCategoryList(category) {
+  // 1. 템플릿 복사
+  const frag = document.importNode(templates.productsForm, true)
+  // 2. 요소 선택
+  const productListEl = frag.querySelector('.products-list')
+  // 3. 필요한 데이터 불러오기
+  const { data: productsList } = await api.get('/products?category=' + category)
+  // 4. 내용 채우기
+
+  // 상품 목록 나열
+  for (const productsItems of productsList) {
+    // 1. 템플릿 복사
+    const frag = document.importNode(templates.productsItems, true)
+    // 2. 요소 선택
+    const thumbnailEl = frag.querySelector('.thumbnail')
+    const nameEl = frag.querySelector('.name')
+    const itemEl = frag.querySelector('.item')
+    // 3. 필요한 데이터 불러오기
+    // 4. 내용 채우기
+    thumbnailEl.setAttribute('src', productsItems.mainImgUrl);
+    nameEl.textContent = productsItems.title;
+    // 5. 이벤트 리스너 등록하기
+    itemEl.addEventListener("click", async e => {
+
+      document.body.classList.add('loading-indicator'); // 로딩 인디케이터 추가
+      drawDetail(productsItems.id);
+      document.body.classList.remove('loading-indicator'); // 로딩 인디케이터 추가
+    });
+    // 6. 템플릿을 문서에 삽입
+    productListEl.appendChild(frag)
+
+  }
+  // 5. 이벤트 리스너 등록하기
+  // 6. 템플릿을 문서에 삽입
+  rootEl.textContent = ''
+  rootEl.appendChild(frag)
 }
 
 // *** 2. 메인화면 ***
@@ -191,14 +233,24 @@ async function drawLoginForm() {
   // 6. 템플릿을 문서에 삽입
   rootEl.textContent = "";
   rootEl.appendChild(frag);
-
-  // 로그인 화면에서 메뉴를 보이지않게 하기위한 작업
-  // document.querySelector(".navigation").removeChild(document.querySelector('.menu-list'))
-
 }
-
-drawDetail(11);
+// 메인 메뉴 선택 시 이동
+document.querySelector('.category-coffee').addEventListener('click',  e =>{
+  drawCategoryList("coffee");
+})
+document.querySelector('.category-drink').addEventListener('click',  e =>{
+  drawCategoryList("drink");
+})
+document.querySelector(".category-icecream").addEventListener("click", e => {
+  drawCategoryList("icecream");
+});
+document.querySelector('.category-ccino').addEventListener('click',  e =>{
+  drawCategoryList("ccino");
+})
+// drawCart()
+// drawDetail(11);
 // drawLoginForm();
-// drawMain();
+drawMain();
+
 
 pageTitleEl.textContent = pageTitle; // 페이지별 타이틀

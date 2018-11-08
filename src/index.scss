@@ -12,6 +12,11 @@ $box-shadow-style : 1px 0 0 0 $border-color,
                       0 1px 0 0 $border-color inset;
 $main-size:1200px;
 $montserrat:'Montserrat', sans-serif;
+$box-shadow-on: 1px 0 0 0 $main-color,
+                0 1px 0 0 $main-color,
+                1px 1px 0 0 $main-color,
+                1px 0 0 0 $main-color inset,
+                0 1px 0 0 $main-color inset;
 
 /* 스타일 초기화 */
 html, body, div, span, applet, object, iframe,
@@ -213,9 +218,16 @@ body.loading-indicator:after{
 .item{
   float:left;
   width:25%;
+  height:380px;
   box-shadow: $box-shadow-style;
   padding:20px;
   cursor : pointer;
+}
+.item:hover{
+  width:25%;
+  height:380px;
+  border:1px solid $main-color;
+  box-shadow: none;
 }
 .item .name{
   text-align: center;
@@ -250,8 +262,6 @@ body.loading-indicator:after{
 
 /****** 상품 페이지 ******/
 .detail-thumbnail-count{
-  // background-color: coral;
-
   dd, dt{
     float:right;
     width:800px;
@@ -267,8 +277,17 @@ body.loading-indicator:after{
     box-shadow: $box-shadow-style;
     padding:20px;
   }
-
-
 }
 
+/******* 장바구니 *******/
+.cart-list{
+  width:100%;
+  th,td{
+    border:1px solid #ddd;
+    text-align: center;
+  }
+  td img{
+    width:100px
+  }
+}
 
