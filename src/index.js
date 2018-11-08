@@ -137,8 +137,8 @@ async function drawLoginForm() {
 
 }
 
-drawDetail(2);
-// drawLoginForm();
+// drawDetail(2);
+drawLoginForm();
 // drawMain();
 
 pageTitleEl.textContent = pageTitle; // 페이지별 타이틀
