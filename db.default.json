@@ -112,22 +112,22 @@
     },
     {
       "id": 11,
-      "category": "dessert",
-      "title": "사라다빵",
-      "description": "어린시절 빵집에서 사먹던 추억의 감자 사라다빵",
-      "mainImgUrl": "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fsaladbread.jpg?1541555829449",
+      "category": "coffee",
+      "title": "카페모카",
+      "description": "다크한 초콜렛과 진한 에스프레소, 부드러운 우유가 더해진 달콤한 맛의 커피",
+      "mainImgUrl": "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fcafemocha.jpg?1541647023758",
       "detailImgUrls": [
-        "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fsaladbread.jpg?1541555829449"
+        "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fcafemocha.jpg?1541647023758"
       ]
     },
     {
       "id": 12,
-      "category": "dessert",
-      "title": "명란마요빵",
-      "description": "짭조름한 명란과 고소하고 부드러운 감자샐러드가 한데 어우러진 명란마요빵",
-      "mainImgUrl": "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fsalted-pollack-roe-mayo-bread.jpg?1541555829001",
+      "category": "drink",
+      "title": "자몽티",
+      "description": "자몽 과육이 입안에서 톡톡! 달콤한 자몽 한 잔",
+      "mainImgUrl": "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fgrapefruit-tea.jpg?1541647023646",
       "detailImgUrls": [
-        "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fsalted-pollack-roe-mayo-bread.jpg?1541555829001"
+        "https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fgrapefruit-tea.jpg?1541647023646"
       ]
     },
     {
@@ -253,17 +253,29 @@
     {
       "id": 19,
       "productId": 11,
-      "title": "ice",
-      "price": 2000
+      "title": "hot",
+      "price": 3000
     },
     {
       "id": 20,
-      "productId": 12,
+      "productId": 11,
       "title": "ice",
       "price": 3500
     },
     {
       "id": 21,
+      "productId": 12,
+      "title": "hot",
+      "price": 3500
+    },
+    {
+      "id": 22,
+      "productId": 12,
+      "title": "ice",
+      "price": 3500
+    },
+    {
+      "id": 23,
       "productId": 13,
       "title": "ice",
       "price": 3500

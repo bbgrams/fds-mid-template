@@ -25,7 +25,6 @@
       <li class="menu-item"><a href="#">커피</a></li>
       <li class="menu-item"><a href="#">음료</a></li>
       <li class="menu-item"><a href="#">아이스크림</a></li>
-      <li class="menu-item"><a href="#">디저트</a></li>
       <li class="menu-item"><a href="#">빕스치노</a></li>
     </ul>
   </nav>
@@ -67,14 +66,23 @@
         <dd class="detail-img">
           <img class="img">
         </dd>
-        <dd class="detail-price">HOT<span class="price-hot">2500</span>원</dd>
-        <dd class="detail-price">ICE<span class="price-ice">2500</span>원</dd>
-        <dd class="detail-option"></dd>
+        <dd class="detail-price">HOT<span class="price-hot"></span>원</dd>
+        <dd class="detail-price">ICE<span class="price-ice"></span>원</dd>
+        <dd class="detail-option">
+          <select name="option" id="option" required>
+            <option value="" selected disabled>옵션을 선택해주세요.</option>
+            <option value="1">HOT</option>
+            <option value="2">ICE</option>
+          </select>
+        </dd>
         <dd class="detail-count">
-          <button class="count-minus">-</button>
+          <!-- <button class="count-minus">-</button> -->
           <label for="buy-count" class="readable-hidden">구매수량</label>
-          <input type="number" name="" id="buy-count">
-          <button class="count-plus">+</button>
+          <input type="number" name="" id="buy-count" value="1">
+          <!-- <button class="count-plus">+</button> -->
+        </dd>
+        <dd class="detail-price">
+          총 <span class="price-all"></span>원
         </dd>
         <dd class="detail-button">
           <button class="buy">구매하기</button>

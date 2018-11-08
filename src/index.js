@@ -46,22 +46,25 @@ async function drawDetail(productId){
   const infoEl = frag.querySelector('.detail-info')
 
 // 3. 필요한 데이터 불러오기
-  const { data : {title, price, description, mainImgUrl} } = await api.get('/products/' + productId, {
+  const { data : {title, price, description, mainImgUrl, options} } = await api.get('/products/' + productId, {
     params:{
       _embed : 'options'
     }
   })
 
-// 4. 내용 채우기
+  // 4. 내용 채우기
   titleEl.textContent = title;
   imgEl.setAttribute('src', mainImgUrl);
   infoEl.textContent = description;
-  console.log(price)
+  console.log(options)
+  // options[0]
 
-// 5. 이벤트 리스너 등록하기
-// 6. 템플릿을 문서에 삽입
-rootEl.textContent=''
-rootEl.appendChild(frag)
+
+
+  // 5. 이벤트 리스너 등록하기
+  // 6. 템플릿을 문서에 삽입
+  rootEl.textContent=''
+  rootEl.appendChild(frag)
 }
 
 // *** 2. 메인화면 ***
@@ -142,8 +145,8 @@ async function drawLoginForm() {
 
 }
 
-// drawDetail(2);
-drawLoginForm();
+drawDetail(13);
+// drawLoginForm();
 // drawMain();
 
 pageTitleEl.textContent = pageTitle; // 페이지별 타이틀

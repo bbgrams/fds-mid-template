@@ -146,15 +146,15 @@ body {
 }
 .menu-item{
   float:left;
-  width:20%;
-  /* border:1px solid $text-color; */
-  /* border 겹침 현상때문에 shadow로 조정 */
+  width:25%;
 }
 .menu-item a{
   width:100%;
   padding:10px 0;
   display:inline-block;
   background-color:#fff;
+  /* border:1px solid $text-color; */
+  /* border 겹침 현상때문에 shadow로 조정 */
   box-shadow: $box-shadow-style;
 }
 .menu-item a:hover{
@@ -207,7 +207,7 @@ body.loading-indicator:after{
 .root{
   margin-top:40px;
 }
-/******** 상품 리스트 ********/
+/******** 상품 리스트 메인 ********/
 .products-list{
 }
 .item{
