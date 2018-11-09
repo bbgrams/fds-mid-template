@@ -324,10 +324,10 @@ document.querySelector(".category-icecream").addEventListener("click", e => {
 document.querySelector('.category-ccino').addEventListener('click',  e =>{
   drawCategoryList("ccino");
 })
-// drawCart()
+drawCart()
 // drawDetail(10);
 // drawLoginForm();
-drawMain();
+// drawMain();
 
 
 pageTitleEl.textContent = pageTitle; // 페이지별 타이틀
