@@ -46,6 +46,7 @@ async function drawCart(){
   const frag = document.importNode(templates.cartForm, true)
   // 2. 요소 선택
   const tbodyEl = frag.querySelector('tbody')
+  const cartBuyAllBtn = frag.querySelector(".cart-buy-all");
   // 3. 필요한 데이터 불러오기
   // cartList : 장바구니에 담긴 option 데이터객체를 포함한 배열
   const {data : cartList} = await api.get('/cartItems', {
@@ -75,6 +76,7 @@ async function drawCart(){
     const cartStateEl = frag.querySelector('.cart-state')
     const cartCountEl = frag.querySelector('.cart-count')
     const cartPriceEl = frag.querySelector('.cart-price')
+    const cartDeleteBtn = frag.querySelector(".cart-delete-btn");
     // 3. 필요한 데이터 불러오기
     const productItem = productList.find(item => cartItem.option.productId === item.id)
     // 4. 내용 채우기
@@ -83,15 +85,24 @@ async function drawCart(){
     cartStateEl.textContent=cartItem.option.title
     cartCountEl.textContent=cartItem.quantity
     cartPriceEl.textContent=cartItem.option.price * cartItem.quantity
-
+    // 5. 이벤트 리스너 등록하기
+    // 삭제 버튼 클릭 시 삭제 진행
+    cartDeleteBtn.addEventListener('click', async e => {
+      e.preventDefault()
+      console.log(cartItem)
+      await api.delete('/cartItems/' + cartItem.id)
+      drawCart()
+    })
     // 6. 템플릿을 문서에 삽입
     tbodyEl.appendChild(frag)
-
-
-
   }
-
   // 5. 이벤트 리스너 등록하기
+  cartBuyAllBtn.addEventListener('click', async e => {
+
+    for (const cartItem of cartList){
+      await api.patch
+    }
+  })
   // 6. 템플릿을 문서에 삽입
   rootEl.textContent=''
   rootEl.appendChild(frag)
