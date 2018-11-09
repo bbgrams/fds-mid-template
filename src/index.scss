@@ -210,7 +210,7 @@ body.loading-indicator:after{
 }
 
 .root{
-  margin-top:40px;
+  margin-top:50px;
 }
 /******** 상품 리스트 메인 ********/
 
@@ -280,13 +280,55 @@ body.loading-indicator:after{
 
 /******* 장바구니 *******/
 .cart-list{
+  margin-top:30px;
   width:100%;
   th,td{
-    border:1px solid #ddd;
+    border-bottom:1px solid #ddd;
     text-align: center;
+    padding:10px 0;
+  }
+  th{
+    padding:20px 0;
+    font-weight: 400;
+    background-color: $main-color;
+    border:0;
+    // border-top:3px solid $main-color;
+    // border-bottom:3px solid $main-color;
+
+
   }
   td img{
-    width:100px
+    width:150px
   }
+  .cart-delete-btn{
+    background-color: #fff;
+    border:1px solid $border-color;
+    color:$border-color;
+    font-weight: 300;
+    width: 36px;
+    height: 36px;
+    line-height:30px;
+  }
+  .cart-delete-btn:hover{
+    border:1px solid $main-color;
+    color:$main-color;
+  }
+}
+.btn-wrap{
+  text-align: center;
+  margin-top:20px;
+}
+.btn-wrap button{
+    border:1px solid $main-color;
+    color:$main-color;
+    background-color: #fff;
+    width:49.5%;
+}
+.btn-wrap button:hover{
+  background-color: $main-color;
+  color:#fff;
+}
+.cart-buy-all{
+  margin-left:1%;
 }
 

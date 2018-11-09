@@ -10,7 +10,7 @@
 <body>
   <!-- 공용헤더 -->
   <div class="header">
-    <a onclick="drawMain(); reurn false;" href="#" class="logo">
+    <a onclick="drawMain(); return false;" href="#" class="logo">
       <img src="https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Flogo.png?1541562675746" alt="빕다방">
     </a>
     <ul class="member-list">
@@ -110,24 +110,35 @@
 
     <!-- 4. 장바구니 -->
     <template id="cart-form">
-      <h1>장바구니</h1>
+      <h1 class="cart-list-title">장바구니</h1>
       <table class="cart-list">
+        <colgroup>
+          <col style="width:5%">
+          <col style="width:">
+          <col style="width:20%">
+          <col style="width:15%">
+          <col style="width:10%">
+          <col style="width:15%">
+          <col style="width:10%">
+        </colgroup>
         <thead>
           <tr>
-            <th><input type="checkbox" name="" id=""></th>
-            <th>이미지</th>
-            <th>상품명</th>
-            <th>HOT/ICE</th>
-            <th>개수</th>
-            <th>가격</th>
-            <th>삭제</th>
+            <th scope="col"><input type="checkbox" name="" id=""></th>
+            <th scope="col">이미지</th>
+            <th scope="col">상품명</th>
+            <th scope="col">HOT/ICE</th>
+            <th scope="col">수량</th>
+            <th scope="col">가격</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
           <!-- tr 반복 삽입 -->
         </tbody>
       </table>
-      <button class="cart-buy-all">전체 구매하기</button>
+      <div class="btn-wrap">
+        <button class="cart-delete-all">전체 삭제하기</button><button class="cart-buy-all">전체 구매하기</button>
+      </div>
     </template>
     <!-- 4-2. 4번 테이블 tbody에 반복 삽입 할 tr -->
     <template id="cart-item">
@@ -138,8 +149,36 @@
         <td class="cart-state"></td>
         <td class="cart-count"></td>
         <td class="cart-price"></td>
-        <td class="cart-delete"><button class="cart-delete-btn">x</button></td>
+        <td class="cart-delete"><button class="cart-delete-btn">×</button></td>
       </tr>
+    </template>
+
+    <!-- 5. 주문 내역 확인 페이지 -->
+    <template id="order-list-form">
+      <h1 class="cart-list-title">주문내역 확인</h1><table class="cart-list">
+        <colgroup>
+          <col style="width:5%">
+          <col style="width:">
+          <col style="width:20%">
+          <col style="width:15%">
+          <col style="width:10%">
+          <col style="width:15%">
+        </colgroup>
+        <thead>
+          <tr>
+            <th scope="col">주문번호</th>
+            <th scope="col">상품명</th>
+            <th scope="col">HOT/ICE</th>
+            <th scope="col">수량</th>
+            <th scope="col">가격</th>
+            <th scope="col">총 결제금액</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- tr 반복 삽입 -->
+        </tbody>
+      </table>
+
     </template>
 
     <div class="root"></div>
