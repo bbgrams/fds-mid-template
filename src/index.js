@@ -27,6 +27,7 @@ const templates = {
   cartItemForm: document.querySelector("#cart-item").content,
   orderListForm: document.querySelector("#order-list-form").content,
   orderListNumberForm: document.querySelector("#order-list-number-form").content,
+  orderListItem: document.querySelector("#order-list-item").content,
 };
 
 const rootEl = document.querySelector('.root')
@@ -46,32 +47,62 @@ async function drawOrderList(){
   // 1. 템플릿 복사
   const frag = document.importNode(templates.orderListForm, true);
   // 2. 요소 선택
-  const tbodyEl = frag.querySelector('tbody')
+  const tbodyEl = frag.querySelector(".tbodyWrap");
   // 3. 필요한 데이터 불러오기
-  // 주문번호별로 객체가 있고, 이 객체 안에는 주문번호별
+  // 주문번호별로 객체가 있고, 이 객체 안에는 주문번호별로 구매한 상품들의 데이터가있다.
+  // orderList: { cartItems : [], id ...}
   const {data : orderList} = await api.get('/orders',{
     params :{
       _embed : 'cartItems'
     }
-  }) // 주문을 진행한 횟수
+  })
   console.log(orderList)
 
   const params = new URLSearchParams()
   orderList.forEach(c => c.cartItems.forEach( c => params.append('id', c.optionId)))
   params.append('_expand', 'product')
+  // 주문번호별로 구매한 상품들의 product 데이터와 option 데이터가 있다.
+  // options : { product : {}, price, title...}
   const { data : options } = await api.get('/options', {
     params
   })
   console.log(options)
-
-
-
   // 4. 내용 채우기
-  // 5-2 tbody안에  삽입할 5-2번 템플릿
+  // 5-2. tbody안에  삽입할 5-2번 템플릿
   for (const orderItem of orderList){
     const frag = document.importNode(templates.orderListNumberForm, true);
     const orderNumberEl = frag.querySelector(".order-number");
+    const listLineEl = frag.querySelector(".list-line");
+    const orderListInnerEl = frag.querySelector(".order-list-inner");
     orderNumberEl.textContent = orderItem.id
+    console.log(orderItem)
+
+    const cartItems = orderItem.cartItems
+    // 5-3. tr.list-line위에 들어갈 5-3번 템플릿
+    for(const orderedCartItem of cartItems){
+      // 1. 템플릿 복사
+      const frag = document.importNode(templates.orderListItem, true);
+      // 2. 요소 선택
+      const orderItemImgEl = frag.querySelector('.order-item-img')
+      const orderItemTitleEl = frag.querySelector('.order-item-title')
+      const orderItemStateEl = frag.querySelector('.order-item-state')
+      const orderItemCountEl = frag.querySelector('.order-item-count')
+      const orderItemPriceEl = frag.querySelector('.order-item-priceAll')
+      // 3. 필요한 데이터 불러오기
+      const orderOptions = options.find(item => item.id === orderedCartItem.optionId);
+      console.log('밑');
+      console.log(orderedCartItem)
+      // 4. 내용 채우기
+      orderItemImgEl.setAttribute("src", orderOptions.product.mainImgUrl);
+      orderItemTitleEl.textContent = orderOptions.product.title;
+      orderItemStateEl.textContent = orderOptions.title;
+      orderItemCountEl.textContent = orderedCartItem.quantity;
+      orderItemPriceEl.textContent = '2000';
+      // 5. 이벤트 리스너 등록하기
+      // 6. 템플릿을 문서에 삽입
+      orderListInnerEl.appendChild(frag);
+
+    }
 
 
     tbodyEl.appendChild(frag);

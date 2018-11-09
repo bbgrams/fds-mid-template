@@ -312,6 +312,28 @@ body.loading-indicator:after{
     color:$main-color;
   }
 }
+.table-list .order-code{
+  text-align: left;
+  padding-left:20px;
+}
+.order-list-inner{
+  width:100%;
+  td{
+    padding:0;
+    img{
+      width:70px;
+    }
+  }
+
+}
+.order-list-inner td{
+  border:0;
+}
+.list-line td{
+  background-color: $main-color;
+  padding:1px 0 0 0;
+  border:0;
+}
 .btn-wrap{
   text-align: center;
   margin-top:20px;

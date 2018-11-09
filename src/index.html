@@ -159,7 +159,7 @@
       <table class="cart-list table-list">
         <colgroup>
           <col style="width:15%">
-          <col style="width:">
+          <col>
           <col style="width:20%">
           <col style="width:15%">
           <col style="width:20%">
@@ -173,7 +173,7 @@
             <th scope="col">가격</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="tbodyWrap">
           <!-- 5-2번 삽입 -->
         </tbody>
       </table>
@@ -181,22 +181,35 @@
     <!-- 5-2. 주문번호 별 템플릿 -->
     <template id="order-list-number-form">
       <tr>
-        <td colspan="4">주문번호 : <span class="order-number">1</span></td>
+        <td colspan="4" class="order-code">주문번호 : <span class="order-number">1</span></td>
         <td>총 결제금액 : <span class="order-price-all"></span>원</td>
       </tr>
-      <!-- 5-3번 삽입 -->
+      <tr>
+        <td colspan="5">
+          <table class="order-list-inner">
+            <colgroup>
+              <col style="width:15%">
+              <col>
+              <col style="width:20%">
+              <col style="width:15%">
+              <col style="width:20%">
+            </colgroup>
+            <!-- 5-3번 템플릿 삽입 -->
+          </table>
+        </td>
+      </tr>
       <tr class="list-line">
-        <td colspan="5">line</td>
+        <td colspan="5"></td>
       </tr>
     </template>
     <!-- 5-3. 구매한상품들 -->
     <template id="order-list-item">
       <tr>
-        <td>이미지</td>
-        <td>아메리카노</td>
-        <td>HOT</td>
-        <td>1</td>
-        <td>2000</td>
+        <td><img class="order-item-img"></td>
+        <td class="order-item-title"></td>
+        <td class="order-item-state"></td>
+        <td class="order-item-count"></td>
+        <td class="order-item-priceAll"></td>
       </tr>
     </template>
 
