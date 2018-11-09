@@ -170,19 +170,9 @@ async function drawCart(){
     tbodyEl.appendChild(frag)
   }
   // 5. 이벤트 리스너 등록하기
+  // 구매 버튼 클릭 시 구매 진행
   cartBuyAllBtn.addEventListener('click', async e => {
-    const {data : {id : orderId}} = await api.post('/orders', {
-      orderTime : Date.now() // 현재 시각을 나타내는 정수
-    })
-    console.log(orderId)
-    for (const cartItem of cartList){
-      await api.patch('/cartItems/' + cartItem.id, {
-        ordered : true,
-        orderId
-      })
-    }
-    alert('주문이 완료되었습니다.')
-    // 주문 상세 페이지로 이동하기
+    buyit()
   })
   // 6. 템플릿을 문서에 삽입
   rootEl.textContent=''
@@ -203,6 +193,7 @@ async function drawDetail(productId){
   const detailCountEl = frag.querySelector('#buy-count')
   const detailPriceForm = frag.querySelector(".detail-price-form");
   const cartButton = frag.querySelector('.cart');
+  const buyButton = frag.querySelector('.buy')
   let priceAll = 0;
 
 
@@ -255,15 +246,25 @@ async function drawDetail(productId){
   cartButton.addEventListener('click', async e => {
     const quantity = parseInt(detailCountEl.value);
     const optionId = parseInt(detailSelectOptionEl.value);
-
-    await api.post('/cartItems', {
-      quantity,
-      optionId,
-      ordered:false
-    })
-    drawCart();
-
+    if (parseInt(detailCountEl.value) < 1){
+      alert('1개 이상 선택해주세요')
+    } else if (!(parseInt(detailSelectOptionEl.value))){
+      alert('옵션을 선택해주세요.')
+    } else {
+      loadingOn();
+      await api.post('/cartItems', {
+        quantity,
+        optionId,
+        ordered:false
+      })
+      drawCart();
+      loadingOff();
+    }
   })
+  // 바로 구매하기 : 안되네
+  // buyButton.addEventListener('click', async e=> {
+  //   buyit();
+  // });
   // 6. 템플릿을 문서에 삽입
   rootEl.textContent=''
   rootEl.appendChild(frag)
@@ -297,9 +298,9 @@ async function drawCategoryList(category) {
     // 5. 이벤트 리스너 등록하기
     itemEl.addEventListener("click", async e => {
 
-      document.body.classList.add('loading-indicator'); // 로딩 인디케이터 추가
+      loadingOn(); // 로딩 인디케이터 추가
       drawDetail(productsItems.id);
-      document.body.classList.remove('loading-indicator'); // 로딩 인디케이터 추가
+      loadingOff(); // 로딩 인디케이터 추가
     });
     // 6. 템플릿을 문서에 삽입
     productListEl.appendChild(frag)
@@ -336,9 +337,9 @@ async function drawMain() {
     // 5. 이벤트 리스너 등록하기
     itemEl.addEventListener("click", async e => {
 
-      document.body.classList.add('loading-indicator'); // 로딩 인디케이터 추가
+      loadingOn(); // 로딩 인디케이터 추가
       drawDetail(productsItems.id);
-      document.body.classList.remove('loading-indicator'); // 로딩 인디케이터 추가
+      loadingOff(); // 로딩 인디케이터 추가
     });
     // 6. 템플릿을 문서에 삽입
     productListEl.appendChild(frag)
@@ -400,15 +401,51 @@ document.querySelector('.category-ccino').addEventListener('click',  e =>{
 // drawCart()
 // drawDetail(10);
 // drawLoginForm();
-// drawMain();
-drawOrderList();
+drawMain();
+// drawOrderList();
 
 
 pageTitleEl.textContent = pageTitle; // 페이지별 타이틀
 
 
-
-
+// * 로딩 인디케이터 함수
+function loadingOn(){
+  document.body.classList.add('loading-indicator'); // 로딩 인디케이터 추가
+}
+function loadingOff(){
+  document.body.classList.remove('loading-indicator'); // 로딩 인디케이터 추가
+}
+// * 구매하기 함수
+async function buyit() {
+  const { data: cartList } = await api.get('/cartItems', {
+    params: {
+      _expand: "option",
+      ordered: false
+    }
+  })
+  const { data: { id: orderId } } = await api.post('/orders', {
+    orderTime: Date.now() // 현재 시각을 나타내는 정수
+  })
+  console.log(orderId)
+  for (const cartItem of cartList) {
+    await api.patch('/cartItems/' + cartItem.id, {
+      ordered: true,
+      orderId
+    })
+  }
+  alert('구매가 완료되었습니다.');
+  drawOrderList();
+}
+// * 상단 로고 클릭 시 메인화면 실행
+document.querySelector('.logo').addEventListener('click', e =>{
+  e.preventDefault();
+  drawMain()
+});
+// * 상단 로그인 버튼 클릭 시 로그인 폼 실행
+document.querySelector(".header-login").addEventListener("click", e => {
+  e.preventDefault();
+  drawLoginForm();
+});
 
 
 // # 해야 될 것.
