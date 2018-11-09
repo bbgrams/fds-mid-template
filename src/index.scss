@@ -278,8 +278,8 @@ body.loading-indicator:after{
   }
 }
 
-/******* 장바구니 *******/
-.cart-list{
+/******* 장바구니, 주문 내역 공통 테이블 스타일 *******/
+.table-list{
   margin-top:30px;
   width:100%;
   th,td{
@@ -294,8 +294,6 @@ body.loading-indicator:after{
     border:0;
     // border-top:3px solid $main-color;
     // border-bottom:3px solid $main-color;
-
-
   }
   td img{
     width:150px

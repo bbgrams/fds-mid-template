@@ -25,6 +25,7 @@ const templates = {
   detailStateForm: document.querySelector("#detail-state-price-form").content,
   cartForm: document.querySelector("#cart-form").content,
   cartItemForm: document.querySelector("#cart-item").content,
+  orderListForm: document.querySelector("#order-list-form").content,
 };
 
 const rootEl = document.querySelector('.root')
@@ -39,7 +40,18 @@ let pageTitle= '빕다방'
 // 5. 이벤트 리스너 등록하기
 // 6. 템플릿을 문서에 삽입
 
-
+// *** 5. 주문 내역 구매 내역 확인 ***
+async function drawOrderList(){
+  // 1. 템플릿 복사
+  const frag = document.importNode(templates.orderListForm, true);
+  // 2. 요소 선택
+  // 3. 필요한 데이터 불러오기
+  // 4. 내용 채우기
+  // 5. 이벤트 리스너 등록하기
+  // 6. 템플릿을 문서에 삽입
+  rootEl.textContent='';
+  rootEl.appendChild(frag);
+}
 // *** 4. 장바구니 ***
 async function drawCart(){
   // 1. 템플릿 복사
@@ -324,10 +336,11 @@ document.querySelector(".category-icecream").addEventListener("click", e => {
 document.querySelector('.category-ccino').addEventListener('click',  e =>{
   drawCategoryList("ccino");
 })
-drawCart()
+// drawCart()
 // drawDetail(10);
 // drawLoginForm();
 // drawMain();
+drawOrderList();
 
 
 pageTitleEl.textContent = pageTitle; // 페이지별 타이틀
