@@ -326,8 +326,8 @@ document.querySelector('.category-ccino').addEventListener('click',  e =>{
 })
 // drawCart()
 // drawDetail(10);
-drawLoginForm();
-// drawMain();
+// drawLoginForm();
+drawMain();
 
 
 pageTitleEl.textContent = pageTitle; // 페이지별 타이틀
