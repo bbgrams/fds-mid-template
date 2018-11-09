@@ -26,6 +26,7 @@ const templates = {
   cartForm: document.querySelector("#cart-form").content,
   cartItemForm: document.querySelector("#cart-item").content,
   orderListForm: document.querySelector("#order-list-form").content,
+  orderListNumberForm: document.querySelector("#order-list-number-form").content,
 };
 
 const rootEl = document.querySelector('.root')
@@ -45,8 +46,37 @@ async function drawOrderList(){
   // 1. 템플릿 복사
   const frag = document.importNode(templates.orderListForm, true);
   // 2. 요소 선택
+  const tbodyEl = frag.querySelector('tbody')
   // 3. 필요한 데이터 불러오기
+  // 주문번호별로 객체가 있고, 이 객체 안에는 주문번호별
+  const {data : orderList} = await api.get('/orders',{
+    params :{
+      _embed : 'cartItems'
+    }
+  }) // 주문을 진행한 횟수
+  console.log(orderList)
+
+  const params = new URLSearchParams()
+  orderList.forEach(c => c.cartItems.forEach( c => params.append('id', c.optionId)))
+  params.append('_expand', 'product')
+  const { data : options } = await api.get('/options', {
+    params
+  })
+  console.log(options)
+
+
+
   // 4. 내용 채우기
+  // 5-2 tbody안에  삽입할 5-2번 템플릿
+  for (const orderItem of orderList){
+    const frag = document.importNode(templates.orderListNumberForm, true);
+    const orderNumberEl = frag.querySelector(".order-number");
+    orderNumberEl.textContent = orderItem.id
+
+
+    tbodyEl.appendChild(frag);
+  }
+  // 5-3 tr.list-line 위에 삽입할 5-3번 템플릿
   // 5. 이벤트 리스너 등록하기
   // 6. 템플릿을 문서에 삽입
   rootEl.textContent='';
@@ -69,7 +99,7 @@ async function drawCart(){
   })
   const params = new URLSearchParams()
   cartList.forEach( c => {
-    params.append('id', c.option.productId)
+    params.append('id', c.option.productId) // 장바구니에 담긴  상품들의 목록만 출력
   })
   // productList : 장바구니에 담긴 optionId의 products 배열
   const {data:productList} = await api.get('/products?', {
