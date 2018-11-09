@@ -98,10 +98,18 @@ async function drawCart(){
   }
   // 5. 이벤트 리스너 등록하기
   cartBuyAllBtn.addEventListener('click', async e => {
-
+    const {data : {id : orderId}} = await api.post('/orders', {
+      orderTime : Date.now() // 현재 시각을 나타내는 정수
+    })
+    console.log(orderId)
     for (const cartItem of cartList){
-      await api.patch
+      await api.patch('/cartItems/' + cartItem.id, {
+        ordered : true,
+        orderId
+      })
     }
+    alert('주문이 완료되었습니다.')
+    // 주문 상세 페이지로 이동하기
   })
   // 6. 템플릿을 문서에 삽입
   rootEl.textContent=''
@@ -318,8 +326,8 @@ document.querySelector('.category-ccino').addEventListener('click',  e =>{
 })
 // drawCart()
 // drawDetail(10);
-// drawLoginForm();
-drawMain();
+drawLoginForm();
+// drawMain();
 
 
 pageTitleEl.textContent = pageTitle; // 페이지별 타이틀
