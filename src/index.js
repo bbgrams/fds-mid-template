@@ -194,6 +194,8 @@ async function drawDetail(productId){
   const detailPriceForm = frag.querySelector(".detail-price-form");
   const cartButton = frag.querySelector('.cart');
   const buyButton = frag.querySelector('.buy')
+  const minusBtn = frag.querySelector(".count-minus");
+  const plusBtn = frag.querySelector('.count-plus');
   let priceAll = 0;
 
 
@@ -265,6 +267,21 @@ async function drawDetail(productId){
   // buyButton.addEventListener('click', async e=> {
   //   buyit();
   // });
+
+  // (-)버튼 클릭 시 수량 마이너스
+  minusBtn.addEventListener('click', e =>{
+    e.preventDefault()
+    if(detailCountEl.value > 1){
+      detailCountEl.value -= 1;
+    }else{
+      alert('1개 이상 선택해주세요.')
+    }
+  })
+  // (+)버튼 클릭 시 수량 플러스
+  plusBtn.addEventListener('click', e =>{
+    e.preventDefault()
+    detailCountEl.value = parseInt(detailCountEl.value) +  1;
+  })
   // 6. 템플릿을 문서에 삽입
   rootEl.textContent=''
   rootEl.appendChild(frag)
@@ -399,9 +416,9 @@ document.querySelector('.category-ccino').addEventListener('click',  e =>{
   drawCategoryList("ccino");
 })
 // drawCart()
-// drawDetail(10);
+drawDetail(10);
 // drawLoginForm();
-drawMain();
+// drawMain();
 // drawOrderList();
 
 
