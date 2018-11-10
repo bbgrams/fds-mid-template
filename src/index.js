@@ -91,7 +91,7 @@ async function drawOrderList(){
       // 3. 필요한 데이터 불러오기
       const orderOptions = options.find(item => item.id === orderedCartItem.optionId);
       console.log('밑');
-      console.log(orderedCartItem)
+      console.log(options);
       // 4. 내용 채우기
       orderItemImgEl.setAttribute("src", orderOptions.product.mainImgUrl);
       orderItemTitleEl.textContent = orderOptions.product.title;
@@ -120,6 +120,7 @@ async function drawCart(){
   // 2. 요소 선택
   const tbodyEl = frag.querySelector('tbody')
   const cartBuyAllBtn = frag.querySelector(".cart-buy-all");
+  const cartDeleteAllBtn = frag.querySelector(".cart-delete-all");
   // 3. 필요한 데이터 불러오기
   // cartList : 장바구니에 담긴 option 데이터객체를 포함한 배열
   const {data : cartList} = await api.get('/cartItems', {
@@ -136,8 +137,8 @@ async function drawCart(){
   const {data:productList} = await api.get('/products?', {
     params
   })
-  console.log(cartList)
-  console.log(productList)
+  // console.log(cartList)
+  // console.log(productList)
   // 4. 내용 채우기
   for(const cartItem of cartList){
     // cartList 배열에 저장된 아이템 개수만큼 tr을 추가할수있게 반복문을 돌린다
@@ -162,7 +163,6 @@ async function drawCart(){
     // 삭제 버튼 클릭 시 삭제 진행
     cartDeleteBtn.addEventListener('click', async e => {
       e.preventDefault()
-      console.log(cartItem)
       await api.delete('/cartItems/' + cartItem.id)
       drawCart()
     })
@@ -174,6 +174,19 @@ async function drawCart(){
   cartBuyAllBtn.addEventListener('click', async e => {
     buyit()
   })
+  // 장바구니 비우기
+  cartDeleteAllBtn.addEventListener('click', async e => {
+    loadingOn();
+    console.log(cartList);
+    for(const cartItem of cartList){
+      api.delete('/cartItems/'+ cartItem.id);
+    }
+    console.log(cartList);
+    loadingOff()
+    drawCart();
+
+  });
+
   // 6. 템플릿을 문서에 삽입
   rootEl.textContent=''
   rootEl.appendChild(frag)
@@ -415,12 +428,6 @@ document.querySelector(".category-icecream").addEventListener("click", e => {
 document.querySelector('.category-ccino').addEventListener('click',  e =>{
   drawCategoryList("ccino");
 })
-// drawCart()
-drawDetail(10);
-// drawLoginForm();
-// drawMain();
-// drawOrderList();
-
 
 pageTitleEl.textContent = pageTitle; // 페이지별 타이틀
 
@@ -466,5 +473,11 @@ document.querySelector(".header-login").addEventListener("click", e => {
 
 
 // # 해야 될 것.
-// - 상품 상세페이지에서 +,- 버튼 누르면 수량 증가, 감소
-// - 상품 상세페이지에서 수량이 0 이하거나 음수일 때 알럿창 띄우기.
+// - 상품 상세페이지에서 +,- 버튼 누르면 수량 증가, 감소 - 하긴했는데..
+
+
+// drawCart()
+// drawDetail(10);
+// drawLoginForm();
+drawMain();
+// drawOrderList();
