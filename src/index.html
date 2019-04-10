@@ -1,234 +1,302 @@
 <!DOCTYPE html>
 <html lang="ko-KR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>빕다방</title>
-  <link rel="stylesheet" href="./index.scss">
-</head>
-<body>
-  <!-- 공용헤더 -->
-  <div class="header">
-    <a href="#" class="logo">
-      <img src="https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Flogo.png?1541562675746" alt="빕다방">
-    </a>
-    <ul class="member-list">
-      <li><a href="#" class="header-login">로그인</a></li>
-      <li><a href="#">회원가입</a></li>
-      <li><a href="#">장바구니</a></li>
-    </ul>
-  </div>
-  <nav class="navigation">
-    <h1 class="page-title">메뉴명</h1>
-    <ul class="menu-list clearfix">
-      <li class="menu-item"><a href="#" class="category-coffee">커피</a></li>
-      <li class="menu-item"><a href="#" class="category-drink">음료</a></li>
-      <li class="menu-item"><a href="#" class="category-icecream">아이스크림</a></li>
-      <li class="menu-item"><a href="#" class="category-ccino">빕스치노</a></li>
-    </ul>
-  </nav>
-  <main>
-    <!-- 템플릿을 이곳에 작성해주세요 -->
-    <!-- 1. 로그인 화면 -->
-    <template id="login-form">
-      <form class="login">
-        <fieldset>
-          <legend>로그인</legend>
-          <p class="login-title">Login 👍 </p>
-          <label for="username" class="readable-hidden">ID</label>
-          <input type="text" name="username" id="username" class="login-input">
-          <label for="password" class="readable-hidden">PW</label>
-          <input type="password" name="password" id="password" class="login-input">
-          <button>로그인</button>
-        </fieldset>
-      </form>
-    </template>
-
-    <!-- 2-1. 메인화면(카테고리 전체보기) -->
-    <template id="products-form">
-      <ul class="products-list clearfix">
-      </ul>
-    </template>
-
-    <!-- 2-2. 메인화면 ul사이에 넣을 상품 아이템들 -->
-    <template id="product-items">
-      <li class="item">
-        <img class="thumbnail">
-        <p class="name"></p>
-      </li>
-    </template>
-
-    <!-- 3. 상품 페이지 -->
-    <template id="products-detail">
-      <dl class="detail-thumbnail-count clearfix">
-        <dt class="detail-title"></dt>
-        <dd class="detail-img">
-          <img class="img">
-        </dd>
-        <!-- HOT 얼마 ICE 얼마 -->
-        <dd class="detail-price-form">
-          <!-- 3-2.detail-state-price-form 삽입 -->
-        </dd>
-        <!-- 옵션-HOT/ICE 선택 -->
-        <dd class="detail-option">
-          <select name="option" id="option" class="detail-select-option" required>
-            <option value="" selected disabled>옵션을 선택해주세요.</option>
-            <!-- 3-3 detail-select-form 템플릿 삽입-->
-          </select>
-        </dd>
-        <!-- 구매 수량 -->
-        <dd class="detail-count">
-          <button class="count-minus">-</button>
-          <label for="buy-count" class="readable-hidden">구매수량</label>
-          <input type="number" name="" id="buy-count" value="1">
-          <button class="count-plus">+</button>
-        </dd>
-        <!-- 총 요금 -->
-        <dd class="detail-price">
-          총 <span class="price-all"></span>원
-        </dd>
-        <!-- 구매하기/장바구니에 담기 버튼 -->
-        <dd class="detail-button">
-          <!-- <button class="buy">구매하기</button> -->
-          <button class="cart">장바구니에 담기</button>
-        </dd>
-      </dl>
-      <p class="detail-info"></p>
-    </template>
-    <!-- 3-2. 상품페이지 내 HOT, ICE 상태 별 요금 -->
-    <template id="detail-state-price-form">
-      <p class="detail-state-price">
-        <span class="state"></span>
-        <span class="state-price"></span>원
-      </p>
-    </template>
-    <!-- 3-3. 상품페이지 내 셀렉트 -->
-    <template id="detail-select-form">
-      <option class="optiontag"></option>
-    </template>
-
-    <!-- 4. 장바구니 -->
-    <template id="cart-form">
-      <h1 class="cart-list-title">장바구니</h1>
-      <table class="cart-list table-list">
-        <colgroup>
-          <col style="width:5%">
-          <col style="width:">
-          <col style="width:20%">
-          <col style="width:15%">
-          <col style="width:10%">
-          <col style="width:15%">
-          <col style="width:10%">
-        </colgroup>
-        <thead>
-          <tr>
-            <th scope="col"><input type="checkbox" name="" id=""></th>
-            <th scope="col">이미지</th>
-            <th scope="col">상품명</th>
-            <th scope="col">HOT/ICE</th>
-            <th scope="col">수량</th>
-            <th scope="col">가격</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- tr 반복 삽입 -->
-        </tbody>
-      </table>
-      <div class="btn-wrap">
-        <button class="cart-delete-all">장바구니 비우기</button><button class="cart-buy-all">전체 구매하기</button>
-      </div>
-    </template>
-    <!-- 4-2. 4번 테이블 tbody에 반복 삽입 할 tr -->
-    <template id="cart-item">
-      <tr>
-        <td class="cart-check"><input type="checkbox" name="" id=""></td>
-        <td class="cart-img"><img class="cart-img-src"></td>
-        <td class="cart-title"></td>
-        <td class="cart-state"></td>
-        <td class="cart-count"></td>
-        <td class="cart-price"></td>
-        <td class="cart-delete"><button class="cart-delete-btn">×</button></td>
-      </tr>
-    </template>
-
-    <!-- 5. 주문 내역 확인 페이지 -->
-    <template id="order-list-form">
-      <h1 class="cart-list-title">주문내역 확인</h1>
-      <table class="cart-list table-list">
-        <colgroup>
-          <col style="width:15%">
-          <col>
-          <col style="width:20%">
-          <col style="width:15%">
-          <col style="width:20%">
-        </colgroup>
-        <thead>
-          <tr>
-            <th scope="col">상품이미지</th>
-            <th scope="col">상품명</th>
-            <th scope="col">HOT/ICE</th>
-            <th scope="col">수량</th>
-            <th scope="col">가격</th>
-          </tr>
-        </thead>
-        <tbody class="tbodyWrap">
-          <!-- 5-2번 삽입 -->
-        </tbody>
-      </table>
-    </template>
-    <!-- 5-2. 주문번호 별 템플릿 -->
-    <template id="order-list-number-form">
-      <tr>
-        <td colspan="4" class="order-code">주문번호 : <span class="order-number">1</span></td>
-        <td>
-          <!-- 총 결제금액 : <span class="order-price-all"></span>원 -->
-        </td>
-      </tr>
-      <tr>
-        <td colspan="5">
-          <table class="order-list-inner">
-            <colgroup>
-              <col style="width:15%">
-              <col>
-              <col style="width:20%">
-              <col style="width:15%">
-              <col style="width:20%">
-            </colgroup>
-            <!-- 5-3번 템플릿 삽입 -->
-          </table>
-        </td>
-      </tr>
-      <tr class="list-line">
-        <td colspan="5"></td>
-      </tr>
-    </template>
-    <!-- 5-3. 구매한상품들 -->
-    <template id="order-list-item">
-      <tr>
-        <td><img class="order-item-img"></td>
-        <td class="order-item-title"></td>
-        <td class="order-item-state"></td>
-        <td class="order-item-count"></td>
-        <td class="order-item-priceAll"></td>
-      </tr>
-    </template>
-
-    <div class="root"></div>
-  </main>
-  <!-- 공용푸터 -->
-  <div class="footer">
-    <div class="profile">
-      <img src="https://avatars3.githubusercontent.com/u/42929997?s=460&v=4" alt="">
-      <ul>
-        <li>made by Shim Soyoung</li>
-        <li>Github : <a href="https://github.com/bbgrams" target="_blank">https://github.com/bbgrams</a></li>
-        <li>blog : <a href="https://bbgrams.github.io/" target="_blank">https://bbgrams.github.io/</a></li>
-        <li>mail : <a href="mailto:sovv12@gmail.com" target="_blank">sovv12@gmail.com</a></li>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>빕다방</title>
+    <link rel="stylesheet" href="./index.scss" />
+  </head>
+  <body>
+    <!-- 공용헤더 -->
+    <div class="header">
+      <a href="#" class="logo">
+        <img
+          src="https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Flogo.png?1541562675746"
+          alt="빕다방"
+        />
+      </a>
+      <ul class="member-list">
+        <li><a href="#" class="header-login">로그인</a></li>
+        <li><a href="#" class="header-signup">회원가입</a></li>
+        <li><a href="#">장바구니</a></li>
       </ul>
     </div>
-  </div>
-  <script src="./index.js"></script>
-</body>
+    <nav class="navigation">
+      <h1 class="page-title">메뉴명</h1>
+      <ul class="menu-list clearfix">
+        <li class="menu-item"><a href="#" class="category-coffee">커피</a></li>
+        <li class="menu-item"><a href="#" class="category-drink">음료</a></li>
+        <li class="menu-item">
+          <a href="#" class="category-icecream">아이스크림</a>
+        </li>
+        <li class="menu-item">
+          <a href="#" class="category-ccino">빕스치노</a>
+        </li>
+      </ul>
+    </nav>
+    <main>
+      <!-- 템플릿을 이곳에 작성해주세요 -->
+      <template id="signup-form">
+        <form class="signup">
+          <fieldset>
+            <legend>회원가입</legend>
+            <h3>회원가입 👍</h3>
+            <label for="username" class="readable-hidden">아이디</label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              placeholder="아이디를 입력해주세요"
+            />
+            <label for="password" class="readable-hidden">비밀번호</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="비밀번호를 입력해주세요"
+            />
+            <button>회원가입</button>
+          </fieldset>
+        </form>
+      </template>
+      <!-- 1. 로그인 화면 -->
+      <template id="login-form">
+        <form class="login">
+          <fieldset>
+            <legend>로그인</legend>
+            <h3>Login 👍</h3>
+            <label for="username" class="readable-hidden">ID</label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              class="login-input"
+              placeholder="아이디를 입력해주세요"
+            />
+            <label for="password" class="readable-hidden">PW</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              class="login-input"
+              placeholder="비밀번호를 입력해주세요"
+            />
+            <button>로그인</button>
+            <button>회원가입</button>
+          </fieldset>
+        </form>
+      </template>
+
+      <!-- 2-1. 메인화면(카테고리 전체보기) -->
+      <template id="products-form">
+        <ul class="products-list clearfix"></ul>
+      </template>
+
+      <!-- 2-2. 메인화면 ul사이에 넣을 상품 아이템들 -->
+      <template id="product-items">
+        <li class="item">
+          <img class="thumbnail" />
+          <p class="name"></p>
+        </li>
+      </template>
+
+      <!-- 3. 상품 페이지 -->
+      <template id="products-detail">
+        <dl class="detail-thumbnail-count clearfix">
+          <dt class="detail-title"></dt>
+          <dd class="detail-img">
+            <img class="img" />
+          </dd>
+          <!-- HOT 얼마 ICE 얼마 -->
+          <dd class="detail-price-form">
+            <!-- 3-2.detail-state-price-form 삽입 -->
+          </dd>
+          <!-- 옵션-HOT/ICE 선택 -->
+          <dd class="detail-option">
+            <select
+              name="option"
+              id="option"
+              class="detail-select-option"
+              required
+            >
+              <option value="" selected disabled>옵션을 선택해주세요.</option>
+              <!-- 3-3 detail-select-form 템플릿 삽입-->
+            </select>
+          </dd>
+          <!-- 구매 수량 -->
+          <dd class="detail-count">
+            <button class="count-minus">-</button>
+            <label for="buy-count" class="readable-hidden">구매수량</label>
+            <input type="number" name="" id="buy-count" value="1" />
+            <button class="count-plus">+</button>
+          </dd>
+          <!-- 총 요금 -->
+          <dd class="detail-price">총 <span class="price-all"></span>원</dd>
+          <!-- 구매하기/장바구니에 담기 버튼 -->
+          <dd class="detail-button">
+            <!-- <button class="buy">구매하기</button> -->
+            <button class="cart">장바구니에 담기</button>
+          </dd>
+        </dl>
+        <p class="detail-info"></p>
+      </template>
+      <!-- 3-2. 상품페이지 내 HOT, ICE 상태 별 요금 -->
+      <template id="detail-state-price-form">
+        <p class="detail-state-price">
+          <span class="state"></span>
+          <span class="state-price"></span>원
+        </p>
+      </template>
+      <!-- 3-3. 상품페이지 내 셀렉트 -->
+      <template id="detail-select-form">
+        <option class="optiontag"></option>
+      </template>
+
+      <!-- 4. 장바구니 -->
+      <template id="cart-form">
+        <h1 class="cart-list-title">장바구니</h1>
+        <table class="cart-list table-list">
+          <colgroup>
+            <col style="width:5%" />
+            <col style="width:" />
+            <col style="width:20%" />
+            <col style="width:15%" />
+            <col style="width:10%" />
+            <col style="width:15%" />
+            <col style="width:10%" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th scope="col"><input type="checkbox" name="" id="" /></th>
+              <th scope="col">이미지</th>
+              <th scope="col">상품명</th>
+              <th scope="col">HOT/ICE</th>
+              <th scope="col">수량</th>
+              <th scope="col">가격</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- tr 반복 삽입 -->
+          </tbody>
+        </table>
+        <div class="btn-wrap">
+          <button class="cart-delete-all">장바구니 비우기</button
+          ><button class="cart-buy-all">전체 구매하기</button>
+        </div>
+      </template>
+      <!-- 4-2. 4번 테이블 tbody에 반복 삽입 할 tr -->
+      <template id="cart-item">
+        <tr>
+          <td class="cart-check"><input type="checkbox" name="" id="" /></td>
+          <td class="cart-img"><img class="cart-img-src" /></td>
+          <td class="cart-title"></td>
+          <td class="cart-state"></td>
+          <td class="cart-count"></td>
+          <td class="cart-price"></td>
+          <td class="cart-delete">
+            <button class="cart-delete-btn">×</button>
+          </td>
+        </tr>
+      </template>
+
+      <!-- 5. 주문 내역 확인 페이지 -->
+      <template id="order-list-form">
+        <h1 class="cart-list-title">주문내역 확인</h1>
+        <table class="cart-list table-list">
+          <colgroup>
+            <col style="width:15%" />
+            <col />
+            <col style="width:20%" />
+            <col style="width:15%" />
+            <col style="width:20%" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th scope="col">상품이미지</th>
+              <th scope="col">상품명</th>
+              <th scope="col">HOT/ICE</th>
+              <th scope="col">수량</th>
+              <th scope="col">가격</th>
+            </tr>
+          </thead>
+          <tbody class="tbodyWrap">
+            <!-- 5-2번 삽입 -->
+          </tbody>
+        </table>
+      </template>
+      <!-- 5-2. 주문번호 별 템플릿 -->
+      <template id="order-list-number-form">
+        <tr>
+          <td colspan="4" class="order-code">
+            주문번호 : <span class="order-number">1</span>
+          </td>
+          <td>
+            <!-- 총 결제금액 : <span class="order-price-all"></span>원 -->
+          </td>
+        </tr>
+        <tr>
+          <td colspan="5">
+            <table class="order-list-inner">
+              <colgroup>
+                <col style="width:15%" />
+                <col />
+                <col style="width:20%" />
+                <col style="width:15%" />
+                <col style="width:20%" />
+              </colgroup>
+              <!-- 5-3번 템플릿 삽입 -->
+            </table>
+          </td>
+        </tr>
+        <tr class="list-line">
+          <td colspan="5"></td>
+        </tr>
+      </template>
+      <!-- 5-3. 구매한상품들 -->
+      <template id="order-list-item">
+        <tr>
+          <td><img class="order-item-img" /></td>
+          <td class="order-item-title"></td>
+          <td class="order-item-state"></td>
+          <td class="order-item-count"></td>
+          <td class="order-item-priceAll"></td>
+        </tr>
+      </template>
+
+      <div class="root"></div>
+    </main>
+    <!-- 공용푸터 -->
+    <div class="footer">
+      <div class="profile">
+        <img
+          src="https://avatars3.githubusercontent.com/u/42929997?s=460&v=4"
+          alt=""
+        />
+        <ul>
+          <li>made by Shim Soyoung</li>
+          <li>
+            Github :
+            <a href="https://github.com/ellie-shim" target="_blank"
+              >https://github.com/ellie-shim</a
+            >
+          </li>
+          <li>
+            blog :
+            <a href="https://ellie-shim.github.io/" target="_blank"
+              >https://ellie-shim.github.io/</a
+            >
+          </li>
+          <li>
+            mail :
+            <a href="mailto:sovv12@gmail.com" target="_blank"
+              >sovv12@gmail.com</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script src="./index.js"></script>
+  </body>
 </html>

@@ -1,401 +1,494 @@
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,700');
-@import url('https://fonts.googleapis.com/css?family=Montserrat:700');
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,700");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:700");
 
 $main-color: #ffe600;
-$sub-color:#0f357d;
+$sub-color: #0f357d;
 $text-color: #202020;
 $border-color: #c8c7c7;
-$box-shadow-style : 1px 0 0 0 $border-color,
-                      0 1px 0 0 $border-color,
-                      1px 1px 0 0 $border-color,
-                      1px 0 0 0 $border-color inset,
-                      0 1px 0 0 $border-color inset;
-$main-size:1200px;
-$montserrat:'Montserrat', sans-serif;
-$box-shadow-on: 1px 0 0 0 $main-color,
-                0 1px 0 0 $main-color,
-                1px 1px 0 0 $main-color,
-                1px 0 0 0 $main-color inset,
-                0 1px 0 0 $main-color inset;
+$box-shadow-style: 1px 0 0 0 $border-color, 0 1px 0 0 $border-color,
+  1px 1px 0 0 $border-color, 1px 0 0 0 $border-color inset,
+  0 1px 0 0 $border-color inset;
+$main-size: 1200px;
+$montserrat: "Montserrat", sans-serif;
+$box-shadow-on: 1px 0 0 0 $main-color, 0 1px 0 0 $main-color,
+  1px 1px 0 0 $main-color, 1px 0 0 0 $main-color inset,
+  0 1px 0 0 $main-color inset;
 
 /* 스타일 초기화 */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video, fieldset, button{
-  margin:0; padding:0; border:0; box-sizing: border-box;
-  font-family: 'Noto Sans KR', sans-serif; color:$text-color;
-  text-decoration: none; list-style: none; border-collapse: collapse;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video,
+fieldset,
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  font-family: "Noto Sans KR", sans-serif;
+  color: $text-color;
+  text-decoration: none;
+  list-style: none;
+  border-collapse: collapse;
   border-spacing: 0;
 }
 /* HTML5 display-role reset for older browsers */
 /* 익스플로러 하위버전은 해당 태그를 인식하지 못한다. 인식하지 못하는 태그는 inline 요소로 들어가기때문에 width, height등의 속성 설정이 안된다. */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section, main {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+main {
+  display: block;
 }
-body{
-  font-size:1.6rem;
+body {
+  font-size: 1.6rem;
 }
 ul {
-    list-style: none;
+  list-style: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
-input[type="text"],input[type="password"]{
+input[type="text"],
+input[type="password"] {
   box-sizing: border-box;
-  padding:0 12px;
-  width:100%;
+  padding: 0 12px;
+  width: 100%;
   height: 46px;
-  border:1px solid $border-color;
-  font-size:1.6rem;
+  border: 1px solid $border-color;
+  font-size: 1.6rem;
 }
-button{
-  padding:0 12px;
+button {
+  padding: 0 12px;
   height: 46px;
-  font-size:1.8rem;
+  font-size: 1.8rem;
   cursor: pointer;
 }
 /******** CSS 모듈 ********/
-.clearfix::after{
-    content: "";
-    display: block;
-    clear:both;
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
 }
 /******** 숨김 콘텐츠 ********/
-.readable-hidden, .skip-nav, legend{
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    margin: -1px;
-    clip: rect(0, 0, 0, 0);
+.readable-hidden,
+.skip-nav,
+legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  margin: -1px;
+  clip: rect(0, 0, 0, 0);
 }
-.skip-nav:focus{
-    width: 100%;
-    height:auto;
-    padding: 1em;
-    background: #000;
-    color: #fff;
-    text-align: center;
-    margin: 0;
-    clip: rect(auto, auto, auto, auto);
-    z-index: 100;
+.skip-nav:focus {
+  width: 100%;
+  height: auto;
+  padding: 1em;
+  background: #000;
+  color: #fff;
+  text-align: center;
+  margin: 0;
+  clip: rect(auto, auto, auto, auto);
+  z-index: 100;
 }
-html{
-  font-size:10px;
+html {
+  font-size: 10px;
 }
-img{
-  width:100%
+img {
+  width: 100%;
 }
 body {
   background-color: #fff;
-  min-height:100vh;
+  min-height: 100vh;
 }
 /******** 공용 헤더 스타일 ********/
-.header{
+.header {
   width: $main-size;
   margin: 0 auto;
-  padding:15px 0;
+  padding: 15px 0;
 }
-.logo{
-  display:inline-block;
+.logo {
+  display: inline-block;
   width: 194px;
 }
-.member-list{
-  text-align:right;
+.member-list {
+  text-align: right;
   float: right;
-  margin-top:20px
+  margin-top: 20px;
 }
-.member-list li{
-  display:inline-block;
-  margin-left:10px;
+.member-list li {
+  display: inline-block;
+  margin-left: 10px;
 }
-.member-list a{
-  color:$text-color;
+.member-list a {
+  color: $text-color;
   border: 1px solid $sub-color;
-  padding:15px 20px;
-  color:$sub-color;
+  padding: 15px 20px;
+  color: $sub-color;
 }
-.navigation{
-  min-width:$main-size;
+.navigation {
+  min-width: $main-size;
   width: 100%;
   height: 400px;
-  background: url(https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fbg-menu.jpg?1541568447816) no-repeat 0 0;
+  background: url(https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fbg-menu.jpg?1541568447816)
+    no-repeat 0 0;
   background-size: cover;
   text-align: center;
-  padding:150px 0 0 0;
+  padding: 150px 0 0 0;
 }
-.page-title{
-  font-size:4rem;
+.page-title {
+  font-size: 4rem;
 }
-.menu-list{
-  width:$main-size;
+.menu-list {
+  width: $main-size;
   margin: 106px auto 0 auto;
 }
-.menu-item{
-  float:left;
-  width:25%;
+.menu-item {
+  float: left;
+  width: 25%;
 }
-.menu-item a{
-  width:100%;
-  padding:10px 0;
-  display:inline-block;
-  background-color:#fff;
+.menu-item a {
+  width: 100%;
+  padding: 10px 0;
+  display: inline-block;
+  background-color: #fff;
   /* border:1px solid $text-color; */
   /* border 겹침 현상때문에 shadow로 조정 */
   box-shadow: $box-shadow-style;
 }
-.menu-item a:hover{
+.menu-item a:hover {
   background-color: $main-color;
-
 }
 
-main{
-  width:$main-size;
+main {
+  width: $main-size;
   margin: 0 auto;
 }
 /******** 공용 푸터 스타일 ********/
-.footer{
-  margin-top:130px;
-  padding:40px;
-  border-top:3px dotted #dadada;
-  font-size:1.4rem;
+.footer {
+  margin-top: 130px;
+  padding: 40px;
+  border-top: 3px dotted #dadada;
+  font-size: 1.4rem;
   line-height: 1.8;
 }
-.profile{
-  width:$main-size;
-  margin:0 auto;
+.profile {
+  width: $main-size;
+  margin: 0 auto;
 }
 .footer img {
   border-radius: 5px;
   width: 150px;
 }
-.footer ul{
-  display:inline-block;
-  margin-left:30px;
-
+.footer ul {
+  display: inline-block;
+  margin-left: 30px;
 }
-.footer a{
-  color:$border-color;
+.footer a {
+  color: $border-color;
 }
 /****** 로딩 인디케이터 *******/
-body.loading-indicator:after{
-  background-color: rgba(0,0,0,0.5);
+body.loading-indicator:after {
+  background-color: rgba(0, 0, 0, 0.5);
   background-image: url(https://cdn.glitch.com/2a5f71af-56a1-4f84-8a70-8a6c7e1a700f%2Fspinning-circles.svg?1541642702611);
   background-repeat: no-repeat;
-  background-position:50% 50%;
+  background-position: 50% 50%;
   position: fixed;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
   bottom: 0;
   right: 0;
-  content:'';
+  content: "";
 }
 
-.root{
-  margin-top:50px;
+.root {
+  margin-top: 50px;
 }
 /******** 상품 리스트 메인 ********/
 
-.item{
-  float:left;
-  width:25%;
-  height:380px;
+.item {
+  float: left;
+  width: 25%;
+  height: 380px;
   box-shadow: $box-shadow-style;
-  padding:20px;
-  cursor : pointer;
+  padding: 20px;
+  cursor: pointer;
 }
-.item:hover{
-  width:25%;
-  height:380px;
-  border:1px solid $main-color;
+.item:hover {
+  width: 25%;
+  height: 380px;
+  border: 1px solid $main-color;
   box-shadow: none;
 }
-.item .name{
+.item .name {
   text-align: center;
-  font-size:1.5rem;
+  font-size: 1.5rem;
 }
-
-/******** 로그인 화면 ********/
-
-.login{
-  width:500px;
+/******** 회원가입 화면 ********/
+.signup {
+  width: 500px;
   margin: 80px auto 0 auto;
 }
-.login-title{
-  font-size:5rem;
-  text-align: center;
-  color:$main-color;
-  font-family: $montserrat;
-  margin-bottom:50px;
-}
-.login-input{
-  display:block;
-  margin-bottom:15px;
-}
-.login button{
-  width:100%;
-  background-color:$main-color;
-  height:60px;
-  font-weight:700;
-  font-size:2.2rem;
+/******** 로그인, 회원가입 화면 ********/
 
+.login,
+.signup {
+  width: 500px;
+  margin: 80px auto 0 auto;
+  h3 {
+    font-size: 5rem;
+    text-align: center;
+    color: $main-color;
+    font-family: $montserrat;
+    margin-bottom: 50px;
+  }
+  input {
+    display: block;
+    margin-bottom: 15px;
+  }
+  button {
+    width: 100%;
+    background-color: $main-color;
+    height: 60px;
+    font-weight: 700;
+    font-size: 2.2rem;
+    &:last-child {
+      background-color: $sub-color;
+      margin-top: 6rem;
+      color: white;
+    }
+  }
 }
 
 /****** 상품 페이지 ******/
-.detail-thumbnail-count{
-  dd, dt{
-    float:right;
-    width:800px;
-    padding:10px 0 0 50px
+.detail-thumbnail-count {
+  dd,
+  dt {
+    float: right;
+    width: 800px;
+    padding: 10px 0 0 50px;
   }
-  dt{
-    font-size:3.6rem;
+  dt {
+    font-size: 3.6rem;
     font-weight: 700;
   }
-  .detail-img{
-    width:400px;
-    float:left;
+  .detail-img {
+    width: 400px;
+    float: left;
     box-shadow: $box-shadow-style;
-    padding:20px;
+    padding: 20px;
   }
-  .detail-state-price{
-    span{
-      display:inline-block;
+  .detail-state-price {
+    span {
+      display: inline-block;
       text-align: right;
-      margin-top:5px;
+      margin-top: 5px;
     }
-    .state{
+    .state {
       font-family: $montserrat;
-      width:40px;
+      width: 40px;
     }
-    .state-price{
-      width:50px;
+    .state-price {
+      width: 50px;
     }
   }
-  .detail-select-option{
+  .detail-select-option {
     height: 36px;
-    padding:0 10px ;
-    font-size:1.6rem;
-    width:200px;
-    border:1px solid $border-color;
+    padding: 0 10px;
+    font-size: 1.6rem;
+    width: 200px;
+    border: 1px solid $border-color;
   }
-  .detail-count{
-    input{
-      width:121px;
-      padding:0 10px;
-      height:36px;
+  .detail-count {
+    input {
+      width: 121px;
+      padding: 0 10px;
+      height: 36px;
       box-sizing: border-box;
       position: relative;
-      top:-3px;
-      border:1px solid $border-color;
+      top: -3px;
+      border: 1px solid $border-color;
     }
-    button{
-      width:36px;
-      height:36px;
+    button {
+      width: 36px;
+      height: 36px;
       background-color: #fff;
-      border:1px solid $border-color;
+      border: 1px solid $border-color;
     }
   }
-  .detail-button{
-    button{
+  .detail-button {
+    button {
       background-color: #fff;
-      color:$main-color;
-      border:1px solid $main-color;
+      color: $main-color;
+      border: 1px solid $main-color;
       margin-right: 10px;
     }
   }
 }
-.detail-info{
-  font-size:2rem;
-  margin-top:80px;
-  border-top:5px dotted $main-color;
+.detail-info {
+  font-size: 2rem;
+  margin-top: 80px;
+  border-top: 5px dotted $main-color;
   padding: 80px 0 0 0;
   text-align: center;
 }
 
 /******* 장바구니, 주문 내역 공통 테이블 스타일 *******/
-.table-list{
-  margin-top:30px;
-  width:100%;
-  th,td{
-    border-bottom:1px solid #ddd;
+.table-list {
+  margin-top: 30px;
+  width: 100%;
+  th,
+  td {
+    border-bottom: 1px solid #ddd;
     text-align: center;
-    padding:10px 0;
+    padding: 10px 0;
   }
-  th{
-    padding:20px 0;
+  th {
+    padding: 20px 0;
     font-weight: 400;
     background-color: $main-color;
-    border:0;
+    border: 0;
     // border-top:3px solid $main-color;
     // border-bottom:3px solid $main-color;
   }
-  td img{
-    width:150px
+  td img {
+    width: 150px;
   }
-  .cart-delete-btn{
+  .cart-delete-btn {
     background-color: #fff;
-    border:1px solid $border-color;
-    color:$border-color;
+    border: 1px solid $border-color;
+    color: $border-color;
     font-weight: 300;
     width: 36px;
     height: 36px;
-    line-height:30px;
+    line-height: 30px;
   }
-  .cart-delete-btn:hover{
-    border:1px solid $main-color;
-    color:$main-color;
+  .cart-delete-btn:hover {
+    border: 1px solid $main-color;
+    color: $main-color;
   }
 }
-.table-list .order-code{
+.table-list .order-code {
   text-align: left;
-  padding-left:20px;
+  padding-left: 20px;
 }
-.order-list-inner{
-  width:100%;
-  td{
-    padding:0;
-    img{
-      width:70px;
+.order-list-inner {
+  width: 100%;
+  td {
+    padding: 0;
+    img {
+      width: 70px;
     }
   }
-
 }
-.order-list-inner td{
-  border:0;
+.order-list-inner td {
+  border: 0;
 }
-.list-line td{
+.list-line td {
   background-color: $main-color;
-  padding:1px 0 0 0;
-  border:0;
+  padding: 1px 0 0 0;
+  border: 0;
 }
-.btn-wrap{
+.btn-wrap {
   text-align: center;
-  margin-top:20px;
+  margin-top: 20px;
 }
-.btn-wrap button{
-    border:1px solid $main-color;
-    color:$main-color;
-    background-color: #fff;
-    width:49.5%;
+.btn-wrap button {
+  border: 1px solid $main-color;
+  color: $main-color;
+  background-color: #fff;
+  width: 49.5%;
 }
-.btn-wrap button:hover{
+.btn-wrap button:hover {
   background-color: $main-color;
-  color:#fff;
+  color: #fff;
 }
-.cart-buy-all{
-  margin-left:1%;
+.cart-buy-all {
+  margin-left: 1%;
 }
-
