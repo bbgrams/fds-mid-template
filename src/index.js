@@ -392,6 +392,9 @@ async function drawMain() {
 async function drawSignupForm() {
   const frag = document.importNode(templates.signupForm, true);
   const formEl = frag.querySelector(".signup");
+  const idCheckEl = frag.querySelector(".signup--id-check");
+
+  // TODO : 아이디 중복 확인 기능
 
   formEl.addEventListener("submit", async e => {
     document.body.classList.add("loading-indicator");
@@ -513,5 +516,5 @@ document.querySelector(".header-signup").addEventListener("click", e => {
 // drawDetail(10);
 // drawLoginForm();
 // drawOrderList();
-// drawMain();
-drawSignupForm();
+drawMain();
+// drawSignupForm();

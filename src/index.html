@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>빕다방</title>
     <link rel="stylesheet" href="./index.scss" />
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
   </head>
   <body>
     <!-- 공용헤더 -->
@@ -37,6 +38,7 @@
     </nav>
     <main>
       <!-- 템플릿을 이곳에 작성해주세요 -->
+      <!-- 회원가입 -->
       <template id="signup-form">
         <form class="signup">
           <fieldset>
@@ -49,6 +51,9 @@
               id="username"
               placeholder="아이디를 입력해주세요"
             />
+            <!-- <button type="button" onkeydown="wow()" class="signup--id-check">
+              중복확인
+            </button> -->
             <label for="password" class="readable-hidden">비밀번호</label>
             <input
               type="password"
@@ -72,7 +77,7 @@
               name="username"
               id="username"
               class="login-input"
-              placeholder="아이디를 입력해주세요"
+              placeholder="테스트 아이디 : bb"
             />
             <label for="password" class="readable-hidden">PW</label>
             <input
@@ -80,7 +85,7 @@
               name="password"
               id="password"
               class="login-input"
-              placeholder="비밀번호를 입력해주세요"
+              placeholder="테스트 비밀번호 : bb"
             />
             <button>로그인</button>
             <button>회원가입</button>
@@ -290,13 +295,13 @@
           </li>
           <li>
             mail :
-            <a href="mailto:sovv12@gmail.com" target="_blank"
-              >sovv12@gmail.com</a
+            <a href="mailto:ellie.shim.s@gmail.com" target="_blank"
+              >ellie.shim.s@gmail.com</a
             >
           </li>
         </ul>
       </div>
     </div>
-    <script src="./index.js"></script>
+    <script defer src="./index.js"></script>
   </body>
 </html>
